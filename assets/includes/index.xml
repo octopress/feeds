@@ -1,5 +1,5 @@
 {% include feed:head.xml %}
-{% for post in site.posts limit:plugin.feed.limit %}
+{% for post in site.posts limit:plugin.feed.count %}
 <entry>
 {% include feed:entry.xml %}
 </entry>

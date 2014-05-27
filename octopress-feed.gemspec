@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Octopress::Ink::Feed::VERSION
   spec.authors       = ["Brandon Mathis"]
   spec.email         = ["brandon@imathis.com"]
-  spec.summary       = %q{An RSS feed for Octopress and Jekyll sites.}
-  spec.description   = %q{An RSS feed for Octopress and Jekyll sites.}
+  spec.summary       = %q{A nice RSS feed for Octopress and Jekyll sites.}
+  spec.description   = %q{A nice RSS feed for Octopress and Jekyll sites.}
   spec.homepage      = "https://github.com/octopress/feed"
   spec.license       = "MIT"
 
@@ -22,5 +22,5 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake"
   spec.add_development_dependency "octopress"
   
-  spec.add_runtime_dependency "octopress-ink", ">= 1.0.0.rc.2"
+  spec.add_runtime_dependency "octopress-ink", ">= 1.0.0.rc.3"
 end

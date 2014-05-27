@@ -1,4 +1,4 @@
-{% assign content = (plugins.feed.full_text ? post.content : post.excerpt) %}
+{% assign content = (plugins.feed.full_content ? post.content : post.excerpt) %}
 <title type="html">{{ post.title_text }}</title>
 {% if post.linkpost and plugins.feed.external_links %}
 <link rel="alternate" type="text/html" href="{{ post.external-url }}"/>

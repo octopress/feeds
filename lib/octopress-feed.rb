@@ -7,6 +7,6 @@ Octopress::Ink.add_plugin({
   assets_path:   File.expand_path(File.join(File.dirname(__FILE__), "../assets")),
   type:          "plugin",
   version:       Octopress::Ink::Feed::VERSION,
-  description:   "An RSS feed for Octopress and Jekyll sites.",
-  website:       "An RSS feed for Octopress and Jekyll sites."
+  description:   "A nice RSS feed for Octopress and Jekyll sites.",
+  website:       "https://github.com/octopress/feed"
 })
