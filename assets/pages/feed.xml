@@ -1,0 +1,5 @@
+---
+type: index
+permalink: /feed/
+---
+{% include feed:index.xml %}

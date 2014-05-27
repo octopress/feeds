@@ -1,0 +1,7 @@
+exclude:
+  - Gemfile*
+gems:
+  - octopress-feed
+url: http://octopress.org/
+author: Bob McStuffins
+name: Some awesome Jekyll site

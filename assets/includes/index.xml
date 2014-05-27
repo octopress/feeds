@@ -1,0 +1,7 @@
+{% include feed:head.xml %}
+{% for post in site.posts limit:plugin.feed.limit %}
+<entry>
+{% include feed:entry.xml %}
+</entry>
+{% endfor %}
+</feed>
