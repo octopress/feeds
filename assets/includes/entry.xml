@@ -1,9 +1,10 @@
-{% assign content = (plugins.feed.full_content ? post.content : post.excerpt) %}
 <title type="html">{{ post.title_text }}</title>
 {% if post.linkpost and plugins.feed.external_links %}
 <link rel="alternate" type="text/html" href="{{ post.external-url }}"/>
-{% endif %}
 <link rel="related" type="text/html" href="{{ post.url | full_url }}"/>
+{% else %}
+<link rel="alternate" type="text/html" href="{{ post.url | full_url }}"/>
+{% endif %}
 <id>{{ post.id }}</id>
 <published>{{ post.date_xml }}</published>
 <updated>{% return post.updated_date_xml || post.date_xml %}</updated>
@@ -12,5 +13,12 @@
   <uri>{% return post.author_site || site.url %}</uri>
 </author>
 <content type="html" xml:base="{{ site.url }}" xml:lang="en">
-<![CDATA[{{ content | full_urls }}]]>
+{% if plugins.feed.excerpt_feed %}
+<![CDATA[{{ post.excerpt | full_urls }}
+
+<p><a href="{{ post.url | full_url }}">Continue reading &rarr;</a></p>
+]]>
+{% else %}
+<![CDATA[{{ post.content | full_urls }}]]>
+{% endif %}
 </content>

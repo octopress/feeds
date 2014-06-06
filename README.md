@@ -44,19 +44,23 @@ Plugin: Octopress Feed - v1.0.0
 Slug: feed
 A nice RSS feed for Octopress and Jekyll sites.
 https://github.com/octopress/feed
-================================================================================
+=============================================================
  includes:
   - entry.xml
   - head.xml
   - index.xml
 
- pages:
-  - feed.xml
+pages:                              urls:
+  - article-feed.xml                   /feed/articles/index.xml
+  - link-feed.xml                      /feed/links/index.xml
+  - main-feed.xml                      /feed/index.xml
 
  default configuration:
     count: 20
-    full_content: true
-    external_links: true
+    excerpts: false         # Feed excerpts post content
+    external_links: true    # Linkposts should direct visitors to the linked site
+    articles_feed: false    # Add a feed with articles only
+    linkposts_feed: false   # Add a feed with linkposts only
 ```
 
 NOTE: Any relative URLs in your posts will be expanded based on your site's `url` configuration.
@@ -76,12 +80,18 @@ If you want to revert to the defaults, simply delete any file you don't care to 
 
 ## Configuration
 
-| Option            | Description                                                 | Default     |
-|:------------------|:------------------------------------------------------------|:------------|
-| `count`           | How many posts should appear in your feed                   | 20          |
-| `full_content`    | Feed entries will contain full post content (not excerpts)  | true        |
-| `external_links`  | Use the external URL as the primary link for a link post    | true        |
+| Option                | Description                                                 | Default     |
+|:----------------------|:------------------------------------------------------------|:------------|
+| `count`               | How many posts should appear in your feed.                  | 20          |
+| `excerpts`            | Feed entries will contain excerpts of post content.         | false       |
+| `external_linkposts`  | Link posts should direct visitors to the linked site.       | true        |
+| `articles_feed`       | Add an additional articles-only feed.                       | false       |
+| `linkposts_feed`      | Add an additional link-posts-only feed.                     | false       |
 
+Note: Post excerpts are determined by Jekyll's `excerpt_separator` configuration. It defaults to splitting your
+post at the first double line-break, `\n\n`. If you want more control over where the excerpt happens on your individual
+posts, You can change that to something like `<!--more-->` and place that comment wherever you like in your post to
+split the content there.
 
 To configure this plugin, first create a configuration file at `_plugins/feed/config.yml`. If you like, you can have Octopress Ink add it for you.
 

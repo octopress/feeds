@@ -1,0 +1,12 @@
+---
+permalink: /feed/articles/
+title: Articles-only Feed
+---
+{% abort if plugins.feed.articles_feed == false %}
+{% include feed:head.xml %}
+{% for post in site.articles limit:plugins.feed.count %}
+<entry>
+{% include feed:entry.xml %}
+</entry>
+{% endfor %}
+</feed>

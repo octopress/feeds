@@ -1,3 +1,5 @@
 count: 20
-full_content: true
-external_links: true
+excerpts: false         # Feed excerpts post content
+external_links: true    # Linkposts should direct visitors to the linked site
+articles_feed: false    # Add a feed with articles only
+linkposts_feed: false   # Add a feed with linkposts only
