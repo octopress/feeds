@@ -1,6 +1,6 @@
 # Octopress Feed
 
-Add nice RSS feed to Octopress and Jekyll sites.
+Add nice RSS feeds to Octopress and Jekyll sites. Supports a standard feed, an articles-only feed and a link-post feed.
 
 ## Installation
 

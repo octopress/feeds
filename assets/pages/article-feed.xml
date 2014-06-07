@@ -2,7 +2,7 @@
 permalink: /feed/articles/
 title: Articles-only Feed
 ---
-{% abort if plugins.feed.articles_feed == false %}
+{% if plugins.feed.articles_feed %}
 {% include feed:head.xml %}
 {% for post in site.articles limit:plugins.feed.count %}
 <entry>
@@ -10,3 +10,4 @@ title: Articles-only Feed
 </entry>
 {% endfor %}
 </feed>
+{% else %}{% abort %}{% endif %}

@@ -1,9 +1,8 @@
-{% assign url = page.url | remove:'index.xml' | full_url %}
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>{% return site.name || site.title %}</title>
   <link rel="alternate" type="text/html" href="{{ site.url }}/"/>
-  <link rel="self" type="application/atom+xml" href="{{ url }}"/>
+  <link rel="self" type="application/atom+xml" href="{{ page.url | remove:'index.xml' | full_url }}"/>
   <id>{{ url }}</id>
   <updated>{{ site.time | datetime | date_to_xmlschema }}</updated>
   <generator uri="http://octopress.org/">Octopress</generator>

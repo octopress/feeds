@@ -2,7 +2,7 @@
 permalink: /feed/links/
 title: Linkpost Feed
 ---
-{% abort if plugins.feed.linkposts_feed == false %}
+{% if plugins.feed.linkposts_feed %}
 {% include feed:head.xml %}
 {% for post in site.linkposts limit:plugins.feed.count %}
 <entry>
@@ -10,3 +10,4 @@ title: Linkpost Feed
 </entry>
 {% endfor %}
 </feed>
+{% else %}{% abort %}{% endif %}
