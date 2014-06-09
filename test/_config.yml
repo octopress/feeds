@@ -1,7 +1,8 @@
 exclude:
   - Gemfile*
+  - test*.rb
 gems:
-  - octopress-feed
+  - octopress-feeds
 url: http://octopress.org/
-author: Bob McStuffins
+author: Bob McDiggity
 title: Some awesome Jekyll site

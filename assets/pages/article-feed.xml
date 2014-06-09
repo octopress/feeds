@@ -1,13 +1,14 @@
 ---
 permalink: /feed/articles/
 title: Articles-only Feed
+feed: articles
 ---
-{% if plugins.feed.articles_feed %}
-{% include feed:head.xml %}
-{% for post in site.articles limit:plugins.feed.count %}
-<entry>
-{% include feed:entry.xml %}
-</entry>
+{% if plugins.feeds.articles_feed %}
+{% include feeds:head.xml %}
+{% for post in site.articles limit:plugins.feeds.count %}
+  <entry>
+    {% include feeds:entry.xml %}
+  </entry>
 {% endfor %}
 </feed>
 {% else %}{% abort %}{% endif %}

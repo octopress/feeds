@@ -1,13 +1,14 @@
 ---
 permalink: /feed/links/
 title: Linkpost Feed
+feed: linkposts
 ---
-{% if plugins.feed.linkposts_feed %}
-{% include feed:head.xml %}
-{% for post in site.linkposts limit:plugins.feed.count %}
-<entry>
-{% include feed:entry.xml %}
-</entry>
+{% if plugins.feeds.linkposts_feed %}
+{% include feeds:head.xml %}
+{% for post in site.linkposts limit:plugins.feeds.count %}
+  <entry>
+    {% include feeds:entry.xml %}
+  </entry>
 {% endfor %}
 </feed>
 {% else %}{% abort %}{% endif %}

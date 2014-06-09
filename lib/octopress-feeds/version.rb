@@ -1,6 +1,6 @@
 module Octopress
   module Ink
-    module Feed
+    module Feeds
       VERSION = "1.0.0"
     end
   end
