@@ -6,3 +6,4 @@ gems:
 url: http://octopress.org/
 author: Bob McDiggity
 title: Some awesome Jekyll site
+timezone: America/Chicago
