@@ -27,11 +27,11 @@ gems:
 
 ## Usage
 
-Be sure your Jekyll configuration has a `url`, a `title`, and an `author`.
+Be sure your Jekyll configuration has a `url`, a `name` and an `author`.
 
 ```yaml
 url: http://yoursite.com/
-title: My Awesome Site
+name: My Awesome Site
 author: Guy McDude
 ```
 
