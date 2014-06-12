@@ -6,7 +6,7 @@ Add nice RSS feeds to Octopress and Jekyll sites. Supports a standard feed, an a
 
 Add this line to your application's Gemfile:
 
-    gem 'octopress-feed'
+    gem 'octopress-feeds'
 
 And then execute:
 
@@ -14,7 +14,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install octopress-feed
+    $ gem install octopress-feeds
 
 ### Add gem to Jekyll
 
@@ -22,7 +22,7 @@ Add the gem to Jekyll's configuration file:
 
 ```yaml
 gems:
-  - octopress-feed
+  - octopress-feeds
 ```
 
 ## Usage
@@ -37,13 +37,13 @@ author: Guy McDude
 
 Next generate your site with `jekyll build` and an xml feed will be generated at `/feed/index.xml`.
 
-To be sure you've installed the plugin correctly, run `octopress ink list feed` which will list detailed information about the plugin.
+To be sure you've installed the plugin correctly, run `octopress ink list feeds` which will list detailed information about the plugin.
 
 ```
 Plugin: Octopress Feed - v1.0.0
-Slug: feed
+Slug: feeds
 A nice RSS feed for Octopress and Jekyll sites.
-https://github.com/octopress/feed
+https://github.com/octopress/feeds
 =============================================================
  includes:
   - entry.xml
@@ -71,7 +71,7 @@ Octopress Ink can copy all of the plugin's assets to `_plugins/feed/*` where you
 only necessary if you want to modify this plugin's behavior.
 
 ```
-octopress ink copy feed
+octopress ink copy feeds
 ```
 
 This will copy the plugin's configuration, pages, and includes from the gem, to your local site. If, for example, you want to change the XML for an entry, you can simply edit the `_plugins/feed/includes/entry.xml` file.
@@ -96,7 +96,7 @@ split the content there.
 To configure this plugin, first create a configuration file at `_plugins/feed/config.yml`. If you like, you can have Octopress Ink add it for you.
 
 ```
-octopress ink copy feed --config-file
+octopress ink copy feeds --config-file
 ```
 
 This will create a configuration file populated with the defaults for this plugin. Deleting this file will restore the default configuration.
