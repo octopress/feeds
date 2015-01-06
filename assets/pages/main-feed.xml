@@ -3,7 +3,6 @@ permalink: /feed/
 title: Main Feed
 feed: posts
 ---
-{% abort if site.posts.size < 1 %}
 {% include feeds:head.xml %}
 {% for post in site.posts limit:plugins.feeds.count %}
   <entry>
