@@ -1,4 +1,4 @@
-<title type="html">{{ post.title_text }}</title>
+<title type="html">{% return post.title_text || post.title %}</title>
     {% if post.linkpost and plugins.feeds.external_links %}
     <link rel="alternate" type="text/html" href="{{ post.external-url }}"/>
     <link rel="related" type="text/html" href="{{ post.url | full_url }}"/>

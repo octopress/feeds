@@ -3,8 +3,11 @@ require 'octopress-ink'
 require 'octopress-include-tag'
 require 'octopress-abort-tag'
 require 'octopress-return-tag'
-require 'octopress-linkblog'
 require 'octopress-date-format'
+
+begin
+  require 'octopress-linkblog'
+rescue LoadError; end
 
 module Octopress
   module Feeds
@@ -54,7 +57,6 @@ end
 Liquid::Template.register_tag('feed_tag', Octopress::Feeds::FeedTag)
 Liquid::Template.register_tag('feed_updated_date', Octopress::Feeds::FeedUpdatedTag)
 
-
 Octopress::Ink.add_plugin({
   name:          "Octopress Feeds",
   slug:          "feeds",
@@ -62,7 +64,7 @@ Octopress::Ink.add_plugin({
   path:          File.expand_path(File.join(File.dirname(__FILE__), "../")),
   type:          "plugin",
   version:       Octopress::Feeds::VERSION,
-  description:   "A nice RSS feed for Octopress and Jekyll sites.",
+  description:   "RSS feeds supporting link-blogging for Octopress and Jekyll sites.",
   website:       "https://github.com/octopress/feeds"
 })
 

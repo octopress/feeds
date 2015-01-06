@@ -3,7 +3,7 @@ permalink: /feed/links/
 title: Linkpost Feed
 feed: linkposts
 ---
-{% if plugins.feeds.linkposts_feed %}
+{% if site.linkposts && plugins.feeds.linkposts_feed %}
 {% include feeds:head.xml %}
 {% for post in site.linkposts limit:plugins.feeds.count %}
   <entry>

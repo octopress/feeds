@@ -1,8 +1,5 @@
 source 'https://rubygems.org'
 
-group :octopress do
-  gem 'octopress'
-  gem 'pry-debugger'
-  gem 'octopress-ink', path: '../../ink'
-  gem 'octopress-feeds', path: '../'
+group :jekyll_plugins do
+  gemspec path: '../'
 end

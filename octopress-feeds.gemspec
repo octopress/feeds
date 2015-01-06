@@ -18,7 +18,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
   
   spec.add_runtime_dependency "octopress-ink", ">= 1.0.0.rc"
-  spec.add_runtime_dependency "octopress-linkblog"
   spec.add_runtime_dependency "octopress-abort-tag"
   spec.add_runtime_dependency "octopress-return-tag"
   spec.add_runtime_dependency "octopress-date-format"
@@ -27,6 +26,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake"
   spec.add_development_dependency "octopress"
   spec.add_development_dependency "clash"
+  spec.add_development_dependency "octopress-linkblog"
 
   if RUBY_VERSION >= "2"
     spec.add_development_dependency "pry-byebug"
