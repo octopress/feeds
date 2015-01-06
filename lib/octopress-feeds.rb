@@ -42,11 +42,13 @@ module Octopress
           posts = site['posts']
         end
 
-        post = posts.sort_by{ |p|
-          p.data['date_updated'] || p.data['date']
-        }.last
+        if !posts.empty?
+          post = posts.sort_by do |p|
+            p.data['date_updated'] || p.date
+          end.last
 
-        post.data['date_updated_xml'] || post.data['date_xml']
+          post.data['date_updated_xml'] || post.data['date_xml']
+        end
       end
     end
   end

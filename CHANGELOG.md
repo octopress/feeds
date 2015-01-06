@@ -1,5 +1,10 @@
 # Changelog
 
+### 1.1.1 (2015-01-06)
+
+- Fixed: Bug in sort by date
+- Fixed: No more empty feeds
+
 ### 1.1.0 (2015-01-06)
 
 - Updated dependencies
