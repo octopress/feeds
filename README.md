@@ -4,26 +4,26 @@ Add nice RSS feeds to Octopress and Jekyll sites. Supports a standard feed, an a
 
 ## Installation
 
-Add this line to your application's Gemfile:
+### Using Bundler
 
-    gem 'octopress-feed'
+Add this gem to your site's Gemfile in the `:jekyll_plugins` group:
 
-And then execute:
+    group :jekyll_plugins do
+      gem 'octopress-feeds'
+    end
+
+Then install the gem with Bundler
 
     $ bundle
 
-Or install it yourself as:
+### Manual Installation
 
-    $ gem install octopress-feed
+    $ gem install octopress-feeds
 
-### Add gem to Jekyll
+Then add the gem to your Jekyll configuration.
 
-Add the gem to Jekyll's configuration file:
-
-```yaml
-gems:
-  - octopress-feed
-```
+    gems:
+      -octopress-feeds
 
 ## Usage
 

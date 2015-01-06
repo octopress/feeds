@@ -1,55 +1,49 @@
 require 'octopress-feeds/version'
 require 'octopress-ink'
-
-Octopress::Ink.add_plugin({
-  name:          "Octopress Feeds",
-  slug:          "feeds",
-  assets_path:   File.expand_path(File.join(File.dirname(__FILE__), "../assets")),
-  type:          "plugin",
-  version:       Octopress::Ink::Feeds::VERSION,
-  description:   "A nice RSS feed for Octopress and Jekyll sites.",
-  website:       "https://github.com/octopress/feeds"
-})
+require 'octopress-include-tag'
+require 'octopress-abort-tag'
+require 'octopress-return-tag'
+require 'octopress-linkblog'
+require 'octopress-date-format'
 
 module Octopress
-  module Ink
-    module Tags
-      class FeedTag < Liquid::Tag
-        def render(context)
-          tags = []
+  module Feeds
+    class FeedTag < Liquid::Tag
+      def render(context)
+        tags = []
 
-          Ink.plugin('feeds').pages.dup.map do |p|
-            if p.filename == 'main-feed.xml' && !p.disabled?
-              tag(p.page)
-            end
+        Ink.plugin('feeds').pages.dup.map do |p|
+          if p.filename == 'main-feed.xml' && !p.disabled?
+            tag(p.page)
           end
-        end
-
-        def tag(page)
-          url = page.url.sub(/index\.xml/, '')
-          "<link href='#{url}' rel='alternate' title='#{page.data['title']}: #{Ink.site.config['name']}' type='application/atom+xml'>"
         end
       end
 
-      class FeedUpdatedTag < Liquid::Tag
-        def render(context)
-          feed = context.environments.first['page']['feed'] || 'posts'
+      def tag(page)
+        url = page.url.sub(/index\.xml/, '')
+        "<link href='#{url}' rel='alternate' title='#{page.data['title']}: #{Octopress.site.config['name']}' type='application/atom+xml'>"
+      end
+    end
 
-          case feed
-          when 'articles'
-            post = Ink.articles.last
-          when 'linkposts'
-            post = Ink.linkposts.last
-          else
-            post = Ink.site.posts.last
-          end
-          
-          if post.data['updated']
-            post.data['updated_date_xml']
-          else
-            post.data['date_xml']
-          end
+    class FeedUpdatedTag < Liquid::Tag
+      def render(context)
+        feed = context.environments.first['page']['feed'] || 'posts'
+        site = context.environments.first['site']
+
+        case feed
+        when 'articles'
+          posts = site['articles']
+        when 'linkposts'
+          posts = site['linkposts']
+        else
+          posts = site['posts']
         end
+
+        post = posts.sort_by{ |p|
+          p.data['date_updated'] || p.data['date']
+        }.last
+
+        post.data['date_updated_xml'] || post.data['date_xml']
       end
     end
   end
@@ -57,6 +51,18 @@ end
 
 
 
-Liquid::Template.register_tag('feed_tag', Octopress::Ink::Tags::FeedTag)
-Liquid::Template.register_tag('feed_updated_date', Octopress::Ink::Tags::FeedUpdatedTag)
+Liquid::Template.register_tag('feed_tag', Octopress::Feeds::FeedTag)
+Liquid::Template.register_tag('feed_updated_date', Octopress::Feeds::FeedUpdatedTag)
+
+
+Octopress::Ink.add_plugin({
+  name:          "Octopress Feeds",
+  slug:          "feeds",
+  gem:           "octopress-feeds",
+  path:          File.expand_path(File.join(File.dirname(__FILE__), "../")),
+  type:          "plugin",
+  version:       Octopress::Feeds::VERSION,
+  description:   "A nice RSS feed for Octopress and Jekyll sites.",
+  website:       "https://github.com/octopress/feeds"
+})
 

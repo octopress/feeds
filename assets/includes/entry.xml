@@ -7,7 +7,7 @@
     {% endif %}
     <id>{{ post.id }}</id>
     <published>{{ post.date_xml }}</published>
-    <updated>{% return post.updated_date_xml || post.date_xml %}</updated>
+    <updated>{% return post.date_updated_xml || post.date_xml %}</updated>
     <author>
       <name>{% return post.author || site.author %}</name>
       <uri>{% return post.author_site || site.url %}</uri>
