@@ -3,8 +3,7 @@ permalink: /feed/articles/
 title: Articles-only Feed
 feed: articles
 ---
-{% if site.articles and site.articles.size > 0 and plugins.feeds.articles_feed %}
-{% include feeds:head.xml %}
+{% if site.articles and site.articles.size > 0 and plugins.feeds.articles_feed %}{% include feeds:head.xml %}
 {% for post in site.articles limit:plugins.feeds.count %}
   <entry>
     {% include feeds:entry.xml %}
