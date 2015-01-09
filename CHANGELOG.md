@@ -1,6 +1,9 @@
 # Changelog
 
 ### 1.1.2 (2015-01-06)
+- Readme fixes (feed -> feeds)
+
+### 1.1.2 (2015-01-06)
 - Fixed: Bug in main feed index.
 
 ### 1.1.1 (2015-01-06)

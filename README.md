@@ -27,7 +27,7 @@ Then add the gem to your Jekyll configuration.
 
 ## Usage
 
-Be sure your Jekyll configuration has a `url`, a `name` and an `author`. If you want your feed to have linkblogging features, be sure
+Be sure your Jekyll configuration has a `url`, a `name` and an `author`. If you want your feed to have link-blogging features, be sure
 to install [Octopress Linkblog](https://github.com/octopress/linkblog).
 
 ```yaml
@@ -36,13 +36,13 @@ name: My Awesome Site
 author: Guy McDude
 ```
 
-Next generate your site with `jekyll build` and an xml feed will be generated at `/feed/index.xml`.
+Next generate your site with `jekyll build` and an xml feed will be generated at `/feeds/index.xml`.
 
-To be sure you've installed the plugin correctly, run `octopress ink list feed` which will list detailed information about the plugin.
+To be sure you've installed the plugin correctly, run `octopress ink list feeds` which will list detailed information about the plugin.
 
 ```
-Plugin: Octopress Feed - v1.0.0
-Slug: feed
+Plugin: Octopress Feeds - v1.1.3
+Slug: feeds
 A nice RSS feed for Octopress and Jekyll sites.
 https://github.com/octopress/feed
 =============================================================
@@ -72,12 +72,12 @@ Octopress Ink can copy all of the plugin's assets to `_plugins/feed/*` where you
 only necessary if you want to modify this plugin's behavior.
 
 ```
-octopress ink copy feed
+octopress ink copy feeds
 ```
 
-This will copy the plugin's configuration, pages, and includes from the gem, to your local site. If, for example, you want to change the XML for an entry, you can simply edit the `_plugins/feed/includes/entry.xml` file.
+This will copy the plugin's configuration, pages, and includes from the gem, to your local site. If, for example, you want to change the XML for an entry, you can simply edit the `_plugins/feeds/includes/entry.xml` file.
 
-If you want to revert to the defaults, simply delete any file you don't care to override from the `_plugins/feed/` directory.
+If you want to revert to the defaults, simply delete any file you don't care to override from the `_plugins/feeds/` directory.
 
 ## Configuration
 
@@ -94,10 +94,10 @@ post at the first double line-break, `\n\n`. If you want more control over where
 posts, You can change that to something like `<!--more-->` and place that comment wherever you like in your post to
 split the content there.
 
-To configure this plugin, first create a configuration file at `_plugins/feed/config.yml`. If you like, you can have Octopress Ink add it for you.
+To configure this plugin, first create a configuration file at `_plugins/feeds/config.yml`. If you like, you can have Octopress Ink add it for you.
 
 ```
-octopress ink copy feed --config-file
+octopress ink copy feeds --config-file
 ```
 
 This will create a configuration file populated with the defaults for this plugin. Deleting this file will restore the default configuration.
