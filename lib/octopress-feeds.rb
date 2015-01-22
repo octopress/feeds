@@ -30,7 +30,7 @@ module Octopress
 
     class FeedUpdatedTag < Liquid::Tag
       def render(context)
-        feed = context['page.feed'] || 'posts'
+        feed = context['feed_type'] || 'posts'
         site = context['site']
 
         case feed

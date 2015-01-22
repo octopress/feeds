@@ -1,4 +1,4 @@
-{% set_lang page.lang %}{% include feeds:head.xml %}
+{% assign feed_type = 'posts' %}{% set_lang page.lang %}{% include feeds:head.xml %}
 {% for post in site.posts limit:plugins.feeds.count %}
   <entry>
     {% include feeds:entry.xml %}

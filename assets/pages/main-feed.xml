@@ -1,6 +1,5 @@
 ---
 permalink: /feed/
 title: Main Feed
-feed: posts
 ---
 {% include feeds:main-feed.xml %}

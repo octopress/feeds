@@ -1,6 +1,5 @@
 ---
 permalink: /feed/links/
 title: Linkpost Feed
-feed: linkposts
 ---
 {% if site.linkposts and site.linkposts.size > 0 and plugins.feeds.linkposts_feed %}{% include feeds:link-feed.xml %}{% else %}{% abort %}{% endif %}

@@ -1,6 +1,5 @@
 ---
 title: Main Feed
-feed: posts
 lang: de
 ---
 {% include feeds:article-feed.xml %}
