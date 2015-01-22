@@ -12,7 +12,7 @@
       <name>{% return post.author || site.author %}</name>
       <uri>{% return post.author_site || site.url %}</uri>
     </author>
-    <content type="html" xml:base="{{ site.url }}" xml:lang="en">
+    <content type="html" xml:base="{{ site.url }}" xml:lang="{% return site.lang || 'en' %}">
 <![CDATA[
 {% if plugins.feeds.excerpts and post.linkpost == false %}
 {{ post.excerpt | full_urls }}

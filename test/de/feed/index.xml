@@ -1,6 +1,6 @@
 ---
-permalink: /feed/
 title: Main Feed
 feed: posts
+lang: de
 ---
 {% include feeds:main-feed.xml %}

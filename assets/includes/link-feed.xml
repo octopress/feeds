@@ -1,0 +1,7 @@
+{% set_lang page.lang %}{% include feeds:head.xml %}
+{% for post in site.linkposts limit:plugins.feeds.count %}
+  <entry>
+    {% include feeds:entry.xml %}
+  </entry>
+{% endfor %}
+</feed>{% endset_lang %}

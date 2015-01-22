@@ -30,8 +30,8 @@ module Octopress
 
     class FeedUpdatedTag < Liquid::Tag
       def render(context)
-        feed = context.environments.first['page']['feed'] || 'posts'
-        site = context.environments.first['site']
+        feed = context['page.feed'] || 'posts'
+        site = context['site']
 
         case feed
         when 'articles'
@@ -54,10 +54,13 @@ module Octopress
   end
 end
 
-
-
 Liquid::Template.register_tag('feed_tag', Octopress::Feeds::FeedTag)
 Liquid::Template.register_tag('feed_updated_date', Octopress::Feeds::FeedUpdatedTag)
+
+# A placeholder for smooth integration of Octopress Multilingual
+unless defined? Octopress::Multilingual
+  Liquid::Template.register_tag('set_lang', Liquid::Block)
+end
 
 Octopress::Ink.add_plugin({
   name:          "Octopress Feeds",
