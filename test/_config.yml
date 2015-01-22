@@ -2,7 +2,6 @@ exclude:
   - Gemfile*
 gems:
   - octopress-feeds
-  - octopress-debugger
   - octopress-multilingual
 url: http://octopress.org
 markdown: redcarpet

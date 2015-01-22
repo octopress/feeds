@@ -28,10 +28,8 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "clash"
   spec.add_development_dependency "octopress-linkblog"
   spec.add_development_dependency "octopress-multilingual"
-  spec.add_development_dependency "octopress-debugger"
 
   if RUBY_VERSION >= "2"
     spec.add_development_dependency "pry-byebug"
   end
-  
 end
