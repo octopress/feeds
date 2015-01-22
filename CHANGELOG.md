@@ -1,5 +1,8 @@
 # Changelog
 
+### 1.1.5 (2015-01-22)
+- Added support for multilingual feeds via the [octopress-multilingual](https://github.com/octopress/multilingual) plugin.
+
 ### 1.1.4 (2015-01-09)
 - Fixed invalid whitespace issue, [#6](https://github.com/octopress/feeds/issues/6).
 
