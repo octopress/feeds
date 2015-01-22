@@ -2,6 +2,9 @@
 
 RSS feeds for Jekyll sites, featuring link-blogging and multilingual support.
 
+[![Build Status](http://img.shields.io/travis/octopress/feeds.svg)](https://travis-ci.org/octopress/feeds)
+[![Gem Version](http://img.shields.io/gem/v/octopress-feeds.svg)](https://rubygems.org/gems/octopress-feeds)
+[![License](http://img.shields.io/:license-mit-blue.svg)](http://octopress.mit-license.org)
 
 ## Installation
 
