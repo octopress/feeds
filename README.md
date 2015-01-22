@@ -102,6 +102,28 @@ octopress ink copy feeds --config-file
 
 This will create a configuration file populated with the defaults for this plugin. Deleting this file will restore the default configuration.
 
+## Multilingual support
+
+If you are using [octopress-multilingual](https://github.com/octopress/multilingual) (a plugin for running a multilingual Jekyll site)
+the setup for this is actually quite simple. Let's say your primary language is English, but you want to add a German feed. Here's
+what you'd do.
+
+First, create a language feed at `/de/feed/index.xml` (or whatever path suits your site) and add the following.
+
+```
+---
+title: Deutsch feed
+lang: de
+---
+{% include feeds:main-feed.xml %}
+```
+
+If you are using the [octopress-linkblog](https://github.com/octopress/linkblog) plugin, you can also add article and link feeds at
+`/de/feed/articles/index.xml` and `/de/feed/feed/index.xml` or whatever paths suits your site. The files should
+basically be the same as above except you'll want to include `feeds:article-feed.xml` or `feeds:link-feed.xml`, respectively.
+
+That's it. When you generate your site. These feeds should contain only German posts. If you have more than one language, you can just repeat the steps above for each.
+
 ## Contributing
 
 1. Fork it ( https://github.com/octopress/feeds/fork )
