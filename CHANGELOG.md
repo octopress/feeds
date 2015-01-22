@@ -1,5 +1,8 @@
 # Changelog
 
+### 1.2.1 (2015-01-22)
+- Sorted feed links
+
 ### 1.2.0 (2015-01-22)
 - Added support for multilingual feeds via the [octopress-multilingual](https://github.com/octopress/multilingual) plugin.
 
