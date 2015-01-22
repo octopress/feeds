@@ -15,6 +15,7 @@ module Octopress
       def render(context)
         context['site.pages'].dup \
           .select { |p| p.data['feed'] } \
+          .sort_by { |p| p.url.size } \
           .map    { |p| tag(p) } \
           .join("\n")
       end
