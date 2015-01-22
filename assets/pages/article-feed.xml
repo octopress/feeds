@@ -1,5 +1,6 @@
 ---
 permalink: /feed/articles/
-title: Articles-only Feed
+title: Articles Feed
+feed: true
 ---
-{% if site.articles and site.articles.size > 0 and plugins.feeds.articles_feed %}{% include feeds:article-feed.xml %}{% else %}{% abort %}{% endif %}
+{% abort unless site.articles and site.articles.size > 0 and plugins.feeds.articles_feed %}{% include feeds:article-feed.xml %}

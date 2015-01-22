@@ -1,6 +1,7 @@
 # Octopress Feeds
 
-Add nice RSS feeds to Octopress and Jekyll sites. Supports a standard feed, an articles-only feed and a link-post feed.
+RSS feeds for Jekyll sites, featuring link-blogging and multilingual support.
+
 
 ## Installation
 
@@ -27,29 +28,97 @@ Then add the gem to your Jekyll configuration.
 
 ## Usage
 
-Be sure your Jekyll configuration has a `url`, a `name` and an `author`. If you want your feed to have link-blogging features, be sure
-to install [Octopress Linkblog](https://github.com/octopress/linkblog).
+For link blogging features (article-only and link-only feeds), install [octopress-linkblog](https://github.com/octopress/linkblog).
+For secondary language feeds, install [octopress-multilingual](https://github.com/octopress/multilingual).
+
+Be sure your Jekyll configuration has a `url`, a `name` and an `author`. 
 
 ```yaml
 url: http://yoursite.com/
-name: My Awesome Site
+name: Your Site Name
 author: Guy McDude
 ```
 
-Next generate your site with `jekyll build` and an xml feed will be generated at `/feeds/index.xml`.
+Next, add a `<link>` tag to your site's `<head>`.
 
-To be sure you've installed the plugin correctly, run `octopress ink list feeds` which will list detailed information about the plugin.
+```html
+<head>
+{% feed_tag %}
+</head>
+```
+
+This would output:
+
+```html
+<head>
+<link href='http://yoursite.com/feed/' title='Your Site Name: Main Feed' rel='alternate' type='application/atom+xml'>
+</head>
+```
+
+That's it. When you build your site with `jekyll build` and this plugin will generate RSS feed(s) and generate the proper `<link>`
+tags.
+
+## Link-blogging
+
+Install [octopress-linkblog](https://github.com/octopress/linkblog) and posts with an `external-url` will be added to a feed at `/feeds/links/index.xml` while an articles-only feed will be generated at `/feeds/articles/index.xml`.
+
+## Multilingual support
+
+If you are using [octopress-multilingual](https://github.com/octopress/multilingual), adding a secondary language feed is pretty simple. Let's say your primary language is English, but you want to add a German feed. Here's what you'd do.
+
+First, create a language feed at `/de/feed/index.xml` (or whatever path suits your site) and add the following.
 
 ```
-Plugin: Octopress Feeds - v1.1.3
+---
+feed: true
+title: Deutsch feed
+---
+{% include feeds:main-feed.xml lang='de' %}
+```
+
+The page config, `feed: true` ensures that it will be added to your site's feed listing with `{% feed_tag %}`. The title, as you'd
+expect will show up as your feed title in RSS readers.
+
+If you are using the [octopress-linkblog](https://github.com/octopress/linkblog) plugin, you can also add article-only and link-only feeds for additional languages.
+
+To create an articles feed, add a file to `/de/feed/articles/index.xml` (or wherever suits your site) containing the following:
+
+```
+---
+feed:true
+title: Deutsch Artikel Feed
+---
+{% include feeds:article-feed.xml lang='de' %}
+```
+
+To add a link posts feed, add a file to `/de/feed/links/index.xml` containing the following:
+
+```
+---
+feed:true
+title: Deutsch Link Feed
+---
+{% include feeds:article-feed.xml lang='de' %}
+```
+
+That's it. When you generate your site. These feeds should contain only German posts. If you have more than one language, you can just repeat the steps above for each.
+
+## Customization
+
+To list detailed information about this plugin, run `$ octopress ink list feeds`. This will output something like this:
+
+```
+Plugin: Octopress Feeds - v1.1.5
 Slug: feeds
-A nice RSS feed for Octopress and Jekyll sites.
-https://github.com/octopress/feed
+RSS feeds for Jekyll sites, featuring link-blogging and multilingual support.
+https://github.com/octopress/feeds
 =============================================================
  includes:
+  - article-feed.xml
   - entry.xml
   - head.xml
-  - index.xml
+  - link-feed.xml
+  - main-feed.xml
 
 pages:                              urls:
   - article-feed.xml                   /feed/articles/index.xml
@@ -66,9 +135,7 @@ pages:                              urls:
 
 NOTE: Any relative URLs in your posts will be expanded based on your site's `url` configuration.
 
-## Customization
-
-Octopress Ink can copy all of the plugin's assets to `_plugins/feed/*` where you can override them with your own modifications. This is
+Octopress Ink can copy all of the plugin's assets to `_plugins/feeds/*` where you can override them with your own modifications. This is
 only necessary if you want to modify this plugin's behavior.
 
 ```
@@ -81,9 +148,18 @@ If you want to revert to the defaults, simply delete any file you don't care to 
 
 ## Configuration
 
+To configure this plugin, first create a configuration file at `_plugins/feeds/config.yml`. If you like, you can have Octopress Ink add it for you.
+
+```
+$ octopress ink copy feeds --config-file
+```
+
+This will create a configuration file populated with the defaults for this plugin. Deleting this file will restore the default configuration.
+
+
 | Option                | Description                                                 | Default     |
 |:----------------------|:------------------------------------------------------------|:------------|
-| `count`               | How many posts should appear in your feed.                  | 20          |
+| `count`               | How many posts should appear in your feeds.                 | 20          |
 | `excerpts`            | Feed entries will contain excerpts of post content.         | false       |
 | `external_linkposts`  | Link posts should direct visitors to the linked site.       | true        |
 | `articles_feed`       | Add an additional articles-only feed.                       | false       |
@@ -93,36 +169,6 @@ Note: Post excerpts are determined by Jekyll's `excerpt_separator` configuration
 post at the first double line-break, `\n\n`. If you want more control over where the excerpt happens on your individual
 posts, You can change that to something like `<!--more-->` and place that comment wherever you like in your post to
 split the content there.
-
-To configure this plugin, first create a configuration file at `_plugins/feeds/config.yml`. If you like, you can have Octopress Ink add it for you.
-
-```
-octopress ink copy feeds --config-file
-```
-
-This will create a configuration file populated with the defaults for this plugin. Deleting this file will restore the default configuration.
-
-## Multilingual support
-
-If you are using [octopress-multilingual](https://github.com/octopress/multilingual) (a plugin for running a multilingual Jekyll site)
-the setup for this is actually quite simple. Let's say your primary language is English, but you want to add a German feed. Here's
-what you'd do.
-
-First, create a language feed at `/de/feed/index.xml` (or whatever path suits your site) and add the following.
-
-```
----
-title: Deutsch feed
-lang: de
----
-{% include feeds:main-feed.xml %}
-```
-
-If you are using the [octopress-linkblog](https://github.com/octopress/linkblog) plugin, you can also add article and link feeds at
-`/de/feed/articles/index.xml` and `/de/feed/feed/index.xml` or whatever paths suits your site. The files should
-basically be the same as above except you'll want to include `feeds:article-feed.xml` or `feeds:link-feed.xml`, respectively.
-
-That's it. When you generate your site. These feeds should contain only German posts. If you have more than one language, you can just repeat the steps above for each.
 
 ## Contributing
 

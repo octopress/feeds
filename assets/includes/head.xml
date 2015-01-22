@@ -6,4 +6,5 @@
   <id>{{ site.url }}</id>
   <updated>{% feed_updated_date %}</updated>
   <generator uri="http://octopress.org/">Octopress</generator>
+  <language>{{ site.lang }}</language>
   <rights>Copyright © {{ site.time | date: '%Y' }}, {{ site.author | strip_html }}</rights>

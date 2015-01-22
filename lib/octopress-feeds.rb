@@ -13,18 +13,24 @@ module Octopress
   module Feeds
     class FeedTag < Liquid::Tag
       def render(context)
-        tags = []
-
-        Ink.plugin('feeds').pages.dup.map do |p|
-          if p.filename == 'main-feed.xml' && !p.disabled?
-            tag(p.page)
-          end
-        end
+        context['site.pages'].dup \
+          .select { |p| p.data['feed'] } \
+          .map    { |p| tag(p) } \
+          .join("\n")
       end
 
       def tag(page)
-        url = page.url.sub(/index\.xml/, '')
-        "<link href='#{url}' rel='alternate' title='#{page.data['title']}: #{Octopress.site.config['name']}' type='application/atom+xml'>"
+        url = page.url.sub(File.basename(page.url), '')
+
+        "<link href='#{url}' title='#{page_title(page)}' rel='alternate' type='application/atom+xml'>"
+      end
+
+      def page_title(page)
+        title = page.site.config['name'].dup || ''
+        title << ': ' unless title.empty?
+        title << page.data['title']
+
+        title
       end
     end
 
@@ -66,10 +72,10 @@ Octopress::Ink.add_plugin({
   name:          "Octopress Feeds",
   slug:          "feeds",
   gem:           "octopress-feeds",
-  path:          File.expand_path(File.join(File.dirname(__FILE__), "../")),
+  path:          File.expand_path(File.join(File.dirname(__FILE__), "..")),
   type:          "plugin",
   version:       Octopress::Feeds::VERSION,
-  description:   "RSS feeds supporting link-blogging for Octopress and Jekyll sites.",
+  description:   "RSS feeds for Jekyll sites, featuring link-blogging and multilingual support",
   website:       "https://github.com/octopress/feeds"
 })
 

@@ -1,5 +1,5 @@
 ---
-title: Main Feed
-lang: de
+title: Deutsch Link Feed
+feed: true
 ---
-{% include feeds:link-feed.xml %}
+{% include feeds:link-feed.xml lang='de' %}
