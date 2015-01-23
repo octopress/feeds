@@ -1,5 +1,8 @@
 # Changelog
 
+### 1.2.2 (2015-01-22)
+- Removed faux `set_lang` tag as it is now integrated into Octopress Ink.
+
 ### 1.2.1 (2015-01-22)
 - Sorted feed links
 
