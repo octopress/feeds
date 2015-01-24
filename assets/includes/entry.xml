@@ -10,9 +10,9 @@
     <updated>{% return post.date_updated_xml || post.date_xml %}</updated>
     <author>
       <name>{% return post.author || site.author %}</name>
-      <uri>{% return post.author_site || site.url %}</uri>
+      <uri>{% if post.author_site %}{{ post.author_site }}{% else %}{{ site.url | join_url: site.baseurl }}{% endif %}</uri>
     </author>
-    <content type="html" xml:base="{{ site.url | full_url }}" xml:lang="{% return site.lang || 'en' %}">
+    <content type="html" xml:base="{{ site.url | join_url: site.baseurl }}" xml:lang="{% return site.lang || 'en' %}">
 <![CDATA[
 {% if plugins.feeds.excerpts and post.linkpost == false %}
 {{ post.excerpt | full_urls }}
