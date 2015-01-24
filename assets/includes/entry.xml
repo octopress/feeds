@@ -1,9 +1,9 @@
 <title type="html">{% return post.title_text || post.title %}</title>
     {% if post.linkpost and plugins.feeds.external_links %}
     <link rel="alternate" type="text/html" href="{{ post.external-url }}"/>
-    <link rel="related" type="text/html" href="{{ post.url | full_url }}"/>
+    <link rel="related" type="text/html" href="{{ post.url | canonical_url }}"/>
     {% else %}
-    <link rel="alternate" type="text/html" href="{{ post.url | full_url }}"/>
+    <link rel="alternate" type="text/html" href="{{ post.url | canonical_url }}"/>
     {% endif %}
     <id>{{ post.id }}</id>
     <published>{{ post.date_xml }}</published>
@@ -12,18 +12,18 @@
       <name>{% return post.author || site.author %}</name>
       <uri>{% return post.author_site || site.url %}</uri>
     </author>
-    <content type="html" xml:base="{{ site.url }}" xml:lang="{% return site.lang || 'en' %}">
+    <content type="html" xml:base="{{ site.url | canonical_url }}" xml:lang="{% return site.lang || 'en' %}">
 <![CDATA[
 {% if plugins.feeds.excerpts and post.linkpost == false %}
 {{ post.excerpt | full_urls }}
 
 {% if post.excerpted %}
-<p><a href="{{ post.url | full_url }}">Continue reading &rarr;</a></p>
+<p><a href="{{ post.url | canonical_url }}">Continue reading &rarr;</a></p>
 {% endif %}
 {% else %}
 {{ post.content | full_urls }}
 {% if post.linkpost %}
-<p><a href="{{ post.url | full_url }}">&infin; Permalink</a></p>
+<p><a href="{{ post.url | canonical_url }}">&infin; Permalink</a></p>
 {% endif %}
 {% endif %}
 ]]>
