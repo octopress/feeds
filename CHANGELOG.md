@@ -1,5 +1,9 @@
 # Changelog
 
+### 1.2.3 (2015-01-24)
+- Fix: Posts use canonical URLs in feeds.
+- Improved `baseurl` support.
+
 ### 1.2.2 (2015-01-22)
 - Removed faux `set_lang` tag as it is now integrated into Octopress Ink.
 
