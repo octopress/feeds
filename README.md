@@ -190,6 +190,8 @@ pages:                              urls:
   - main-feed.xml                      /rss/index.xml
 ```
 
+Note: Multilingual feeds will not show up here. This only shows pages that come with this plugin.
+
 ### Excerpted feeds
 
 Post excerpts are determined by Jekyll's `excerpt_separator` configuration. It defaults to splitting your
