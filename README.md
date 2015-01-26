@@ -94,7 +94,7 @@ title: Deutsch Artikel Feed
 {% include feeds:article-feed.xml lang='de' %}
 ```
 
-To add a link posts feed, add a file to `/de/feed/links/index.xml` containing the following:
+To add a link-posts feed, add a file to `/de/feed/links/index.xml` containing the following:
 
 ```
 ---
@@ -106,7 +106,7 @@ title: Deutsch Link Feed
 
 That's it. When you generate your site. These feeds should contain only German posts. If you have more than one language, you can just repeat the steps above for each.
 
-## Customization
+## Customize feeds
 
 To list detailed information about this plugin, run `$ octopress ink list feeds`. This will output something like this:
 
@@ -167,11 +167,36 @@ This will create a configuration file populated with the defaults for this plugi
 | `external_linkposts`  | Link posts should direct visitors to the linked site.       | true        |
 | `articles_feed`       | Add an additional articles-only feed.                       | false       |
 | `linkposts_feed`      | Add an additional link-posts-only feed.                     | false       |
+| `permalinks`          | Set the permalink for feed pages.                           |             |
 
-Note: Post excerpts are determined by Jekyll's `excerpt_separator` configuration. It defaults to splitting your
+
+### Feed permalinks
+
+You can set the URL for the feed pages by configuring the `permalink` setting. Here's an example:
+
+```yaml
+permalinks:
+  main-feed: /rss/
+  link-feed: /rss/links/
+  article-feed: /rss/articles/
+```
+
+Now when you run `$ octopress ink list feeds` the pages section will look like this:
+
+```
+pages:                              urls:
+  - article-feed.xml                   /rss/articles/index.xml
+  - link-feed.xml                      /rss/links/index.xml
+  - main-feed.xml                      /rss/index.xml
+```
+
+### Excerpted feeds
+
+Post excerpts are determined by Jekyll's `excerpt_separator` configuration. It defaults to splitting your
 post at the first double line-break, `\n\n`. If you want more control over where the excerpt happens on your individual
 posts, You can change that to something like `<!--more-->` and place that comment wherever you like in your post to
 split the content there.
+
 
 ## Contributing
 

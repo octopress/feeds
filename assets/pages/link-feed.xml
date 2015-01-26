@@ -3,4 +3,4 @@ permalink: /feed/links/
 title: Links Feed
 feed: true
 ---
-{% abort unless site.linkposts and site.linkposts.size > 0 and plugins.feeds.linkposts_feed %}{% include feeds:link-feed.xml %}
+{% abort unless site.linkposts and site.linkposts.size > 0 %}{% include feeds:link-feed.xml %}

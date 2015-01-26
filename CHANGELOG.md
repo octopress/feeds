@@ -1,5 +1,9 @@
 # Changelog
 
+### 1.2.4 (2015-01-26)
+
+- Link and Article feeds are automatically added when linkblog plugin is added.
+
 ### 1.2.3 (2015-01-24)
 - Fix: Posts use canonical URLs in feeds.
 - Improved `baseurl` support.
