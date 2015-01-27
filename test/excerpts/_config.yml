@@ -1,0 +1,9 @@
+exclude:
+  - Gemfile*
+gems:
+  - octopress-feeds
+url: http://octopress.org
+markdown: redcarpet
+author: Bob McDiggity
+name: Some awesome Jekyll site
+timezone: America/Chicago

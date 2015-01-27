@@ -4,68 +4,24 @@ require 'octopress-include-tag'
 require 'octopress-abort-tag'
 require 'octopress-return-tag'
 require 'octopress-date-format'
+require 'octopress-feeds/tags'
 
-begin
-  require 'octopress-linkblog'
-rescue LoadError; end
 
 module Octopress
   module Feeds
-    class FeedTag < Liquid::Tag
-      def render(context)
-        context['site.pages'].dup \
-          .select { |p| p.data['feed'] } \
-          .sort_by { |p| p.url } \
-          .sort_by { |p| p.url.size } \
-          .map    { |p| tag(p) } \
-          .join("\n")
-      end
+    class Plugin < Ink::Plugin
+      def add_pages
+        linkblogging = defined? Octopress::Linkblog
 
-      def tag(page)
-        url = page.url.sub(File.basename(page.url), '')
-
-        "<link href='#{url}' title='#{page_title(page)}' rel='alternate' type='application/atom+xml'>"
-      end
-
-      def page_title(page)
-        title = page.site.config['name'].dup || ''
-        title << ': ' unless title.empty?
-        title << page.data['title']
-
-        title
-      end
-    end
-
-    class FeedUpdatedTag < Liquid::Tag
-      def render(context)
-        feed = context['feed_type'] || 'posts'
-        site = context['site']
-
-        case feed
-        when 'articles'
-          posts = site['articles']
-        when 'linkposts'
-          posts = site['linkposts']
-        else
-          posts = site['posts']
-        end
-
-        if !posts.empty?
-          post = posts.sort_by do |p|
-            p.data['date_updated'] || p.date
-          end.last
-
-          post.data['date_updated_xml'] || post.data['date_xml']
+        @pages = add_new_assets(@pages_dir, Ink::Assets::PageAsset).reject do |p|
+          !linkblogging && (p.file =~ /(article|link)/)
         end
       end
     end
   end
 end
 
-Liquid::Template.register_tag('feed_tag', Octopress::Feeds::FeedTag)
-Liquid::Template.register_tag('feed_updated_date', Octopress::Feeds::FeedUpdatedTag)
-
-Octopress::Ink.add_plugin({
+Octopress::Ink::Plugins.register_plugin(Octopress::Feeds::Plugin, {
   name:          "Octopress Feeds",
   slug:          "feeds",
   gem:           "octopress-feeds",
@@ -75,4 +31,5 @@ Octopress::Ink.add_plugin({
   description:   "RSS feeds for Jekyll sites, featuring link-blogging and multilingual support",
   website:       "https://github.com/octopress/feeds"
 })
+
 

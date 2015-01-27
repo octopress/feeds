@@ -1,0 +1,25 @@
+-
+  title: Standard build
+  dir: standard
+  build: true
+  compare: _expected _site
+-
+  title: Excerpted content
+  dir: excerpts
+  build: true
+  compare: _expected _site
+-
+  title: Link blogging
+  dir: linkblog
+  build: true
+  compare: _expected _site
+-
+  title: Multilingual site
+  dir: multilingual
+  build: true
+  compare: _expected _site
+-
+  title: Multilingual site with excerpts
+  dir: multilingual-excerpts-linkblog
+  build: true
+  compare: _expected _site

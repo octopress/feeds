@@ -1,0 +1,5 @@
+---
+title: Deutsch Feed
+feed: true
+---
+{% include feeds:main-feed.xml lang='de' %}

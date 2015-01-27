@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Some awesome Jekyll site</title>
+  <link rel="alternate" type="text/html" href="http://octopress.org/"/>
+  <link rel="self" type="application/atom+xml" href="http://octopress.org/de/feed/links/"/>
+  <id>http://octopress.org/</id>
+  <updated>2015-01-22T19:18:39-06:00</updated>
+  <generator uri="http://octopress.org/">Octopress</generator>
+  <language>de</language>
+  <rights>Copyright © 2015, Bob McDiggity</rights>
+
+  <entry>
+    <title type="html">Externer Link Senden →</title>
+    
+    <link rel="alternate" type="text/html" href="http://example.com/kittens"/>
+    <link rel="related" type="text/html" href="http://octopress.org/de/2015/01/22/externer-link-senden.html"/>
+    
+    <id>/de/2015/01/22/externer-link-senden</id>
+    <published>2015-01-22T19:18:39-06:00</published>
+    <updated>2015-01-22T19:18:39-06:00</updated>
+    <author>
+      <name>Bob McDiggity</name>
+      <uri>http://octopress.org/</uri>
+    </author>
+    <content type="html" xml:base="http://octopress.org/" xml:lang="de">
+<![CDATA[
+
+<p>Dies wird in deutscher Sprache</p>
+
+<p>This will not be excerpted. (It&#39;s a link post)</p>
+
+
+<p><a href="http://octopress.org/de/2015/01/22/externer-link-senden.html">&infin; Permalink</a></p>
+
+
+]]>
+    </content>
+  </entry>
+
+</feed>

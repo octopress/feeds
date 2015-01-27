@@ -14,16 +14,16 @@
     </author>
     <content type="html" xml:base="{{ site.url | join_url: site.baseurl }}" xml:lang="{% return site.lang || 'en' %}">
 <![CDATA[
-{% if plugins.feeds.excerpts and post.linkpost == false %}
-{{ post.excerpt | full_urls }}
-
-{% if post.excerpted %}
-<p><a href="{{ post.url | canonical_url }}">Continue reading &rarr;</a></p>
-{% endif %}
-{% else %}
+{% if plugins.feeds.excerpts == false or post.linkpost %}
 {{ post.content | full_urls }}
 {% if post.linkpost %}
 <p><a href="{{ post.url | canonical_url }}">&infin; Permalink</a></p>
+{% endif %}
+{% else %}
+{{ post.excerpt | full_urls }}
+
+{% if post.excerpt != post.content %}
+<p><a href="{{ post.url | canonical_url }}">Continue reading &rarr;</a></p>
 {% endif %}
 {% endif %}
 ]]>
