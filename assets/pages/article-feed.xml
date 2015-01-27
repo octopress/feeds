@@ -3,4 +3,4 @@ permalink: /feed/articles/
 title: Articles Feed
 feed: true
 ---
-{% abort unless site.articles and site.articles.size > 0 %}{% include feeds:article-feed.xml %}
+{% include feeds:article-feed.xml %}

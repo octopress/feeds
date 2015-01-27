@@ -10,11 +10,15 @@ require 'octopress-feeds/tags'
 module Octopress
   module Feeds
     class Plugin < Ink::Plugin
-      def add_pages
-        linkblogging = defined? Octopress::Linkblog
 
-        @pages = add_new_assets(@pages_dir, Ink::Assets::PageAsset).reject do |p|
-          !linkblogging && (p.file =~ /(article|link)/)
+      def add_pages
+        super
+
+        # Remove linkblog pages if the octopress-linkblog plugin isn't installed
+        unless defined? Octopress::Linkblog
+          @pages.reject! do |p|
+            p.file =~ /(article|link)/
+          end
         end
       end
     end
