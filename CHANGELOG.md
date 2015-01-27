@@ -1,5 +1,10 @@
 # Changelog
 
+### 1.2.5 (2015-01-26)
+
+- Fix: Feed excerpts work with linkblog and multilingual sites.
+- Fix: Only add link and article feeds if octopress-linkblog is installed.
+
 ### 1.2.4 (2015-01-26)
 
 - Link and Article feeds are automatically added when linkblog plugin is added.
