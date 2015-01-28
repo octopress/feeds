@@ -2,7 +2,7 @@
 
 ### 1.2.6 (2015-01-27)
 
-- On multilanguage sites, the main language feed URL will default to `/[lang]/feed/index.xml`
+- On multilingual sites, the main language feed URL will default to `/[lang]/feed/index.xml`
 
 ### 1.2.5 (2015-01-26)
 
