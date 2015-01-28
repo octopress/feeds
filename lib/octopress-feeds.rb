@@ -5,11 +5,16 @@ require 'octopress-abort-tag'
 require 'octopress-return-tag'
 require 'octopress-date-format'
 require 'octopress-feeds/tags'
+require 'octopress-feeds/config-asset'
 
 
 module Octopress
   module Feeds
     class Plugin < Ink::Plugin
+
+      def config_defaults
+        @config ||= Feeds::Config.new(self, @config_file)
+      end
 
       def add_pages
         super
@@ -35,5 +40,3 @@ Octopress::Ink::Plugins.register_plugin(Octopress::Feeds::Plugin, {
   description:   "RSS feeds for Jekyll sites, featuring link-blogging and multilingual support",
   website:       "https://github.com/octopress/feeds"
 })
-
-

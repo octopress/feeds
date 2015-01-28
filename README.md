@@ -67,9 +67,20 @@ Install [octopress-linkblog](https://github.com/octopress/linkblog) and posts wi
 
 ## Multilingual support
 
-If you are using [octopress-multilingual](https://github.com/octopress/multilingual), adding a secondary language feed is pretty simple. Let's say your primary language is English, but you want to add a German feed. Here's what you'd do.
+If you are using [octopress-multilingual](https://github.com/octopress/multilingual), your feed urls will be organized by language. If
+your site's main language is `en` your English feeds will be here:
 
-First, create a language feed at `/de/feed/index.xml` (or whatever path suits your site) and add the following.
+```
+/en/feed/index.xml       # All English posts feed
+/en/links/index.xml      # English link posts (if using octopress-linkblog)
+/en/articles/index.xml   # English article posts (if using octopress-linkblog)
+```
+
+To change the URL for these pages, read the [Feed Permalinks](#feed-permalinks) section below.
+
+Adding a secondary language feed is pretty simple. Let's say you want to add a German language feed. Here's what you'd do.
+
+First, create a page at `/de/feed/index.xml` (or whatever path suits your site's URL conventions) and add the following.
 
 ```
 ---

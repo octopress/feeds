@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
   <title>Some awesome Jekyll site</title>
   <link rel="alternate" type="text/html" href="http://octopress.org/"/>
-  <link rel="self" type="application/atom+xml" href="http://octopress.org/feed/"/>
+  <link rel="self" type="application/atom+xml" href="http://octopress.org/en/feed/links/"/>
   <id>http://octopress.org/</id>
   <updated>2014-06-01T22:45:41-05:00</updated>
   <generator uri="http://octopress.org/">Octopress</generator>
@@ -31,32 +31,6 @@
 
 
 <p><a href="http://octopress.org/2014/05/26/awesome-link.html">&infin; Permalink</a></p>
-
-
-]]>
-    </content>
-  </entry>
-
-  <entry>
-    <title type="html">Some Great Post Idea</title>
-    
-    <link rel="alternate" type="text/html" href="http://octopress.org/2014/05/26/some-great-post-idea.html"/>
-    
-    <id>/2014/05/26/some-great-post-idea</id>
-    <published>2014-05-26T22:29:13-05:00</published>
-    <updated>2014-05-26T22:29:13-05:00</updated>
-    <author>
-      <name>Bob McDiggity</name>
-      <uri>http://octopress.org/</uri>
-    </author>
-    <content type="html" xml:base="http://octopress.org/" xml:lang="en">
-<![CDATA[
-
-<p>totally sweet stuff.</p>
-
-
-
-<p><a href="http://octopress.org/2014/05/26/some-great-post-idea.html">Continue reading &rarr;</a></p>
 
 
 ]]>
