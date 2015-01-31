@@ -86,8 +86,9 @@ First, create a page at `/de/feed/index.xml` (or whatever path suits your site's
 ---
 feed: true
 title: Deutsch feed
+lang: de
 ---
-{% include feeds:main-feed.xml lang='de' %}
+{% include feeds:main-feed.xml %}
 ```
 
 The page config, `feed: true` ensures that it will be added to your site's feed listing with `{% feed_tag %}`. The title, as you'd
@@ -101,8 +102,9 @@ To create an articles feed, add a file to `/de/feed/articles/index.xml` (or wher
 ---
 feed:true
 title: Deutsch Artikel Feed
+lang: de
 ---
-{% include feeds:article-feed.xml lang='de' %}
+{% include feeds:article-feed.xml %}
 ```
 
 To add a link-posts feed, add a file to `/de/feed/links/index.xml` containing the following:
@@ -111,8 +113,9 @@ To add a link-posts feed, add a file to `/de/feed/links/index.xml` containing th
 ---
 feed:true
 title: Deutsch Link Feed
+lang: de
 ---
-{% include feeds:article-feed.xml lang='de' %}
+{% include feeds:article-feed.xml %}
 ```
 
 That's it. When you generate your site. These feeds should contain only German posts. If you have more than one language, you can just repeat the steps above for each.

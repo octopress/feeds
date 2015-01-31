@@ -1,7 +1,7 @@
-{% assign feed_type = 'articles' %}{% set_lang include.lang %}{% include feeds:head.xml %}
+{% assign feed_type = 'articles' %}{% include feeds:head.xml %}
 {% for post in site.articles limit:plugins.feeds.count %}
   <entry>
     {% include feeds:entry.xml %}
   </entry>
 {% endfor %}
-</feed>{% endset_lang %}
+</feed>

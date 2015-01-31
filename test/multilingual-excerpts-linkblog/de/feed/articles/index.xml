@@ -1,5 +1,6 @@
 ---
 title: Deutsch Artikel Feed
 feed: true
+lang: de
 ---
-{% include feeds:article-feed.xml lang='de' %}
+{% include feeds:article-feed.xml %}

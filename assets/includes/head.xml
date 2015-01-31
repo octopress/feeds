@@ -6,5 +6,5 @@
   <id>{{ site.url | join_url: site.baseurl }}</id>
   <updated>{% feed_updated_date %}</updated>
   <generator uri="http://octopress.org/">Octopress</generator>
-  <language>{% return site.lang || 'en' %}</language>
+  {% if page.lang %}<language>{{ page.lang }}</language>{% endif %}
   <rights>Copyright © {{ site.time | date: '%Y' }}, {{ site.author | strip_html }}</rights>

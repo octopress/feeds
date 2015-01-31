@@ -1,5 +1,9 @@
 # Changelog
 
+### 1.2.7 (2015-01-31)
+
+- Added support for new octopress-multilingual page.lang feature.
+
 ### 1.2.6 (2015-01-27)
 
 - On multilingual sites, the main language feed URL will default to `/[lang]/feed/index.xml`

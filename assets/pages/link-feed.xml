@@ -2,5 +2,6 @@
 permalink: /feed/links/
 title: Links Feed
 feed: true
+lang: en
 ---
 {% include feeds:link-feed.xml %}
