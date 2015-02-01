@@ -6,7 +6,7 @@
   <id>http://octopress.org/</id>
   <updated>2014-05-26T22:29:13-05:00</updated>
   <generator uri="http://octopress.org/">Octopress</generator>
-  <language>en</language>
+  
   <rights>Copyright © 2015, Bob McDiggity</rights>
 
   <entry>
@@ -21,7 +21,7 @@
       <name>Bob McDiggity</name>
       <uri>http://octopress.org/</uri>
     </author>
-    <content type="html" xml:base="http://octopress.org/" xml:lang="en">
+    <content type="html" xml:base="http://octopress.org/" >
 <![CDATA[
 
 <p>totally sweet stuff.</p>
