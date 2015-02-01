@@ -42,6 +42,8 @@ name: Your Site Name
 author: Guy McDude
 ```
 
+Note: Relative URLs in your posts will be expanded based on your site's `url` and `basename` configuration.
+
 Next, add a `<link>` tag to your site's `<head>`.
 
 ```html
@@ -67,58 +69,21 @@ Install [octopress-linkblog](https://github.com/octopress/linkblog) and posts wi
 
 ## Multilingual support
 
-If you are using [octopress-multilingual](https://github.com/octopress/multilingual), your feed urls will be organized by language. If
-your site's main language is `en` your English feeds will be here:
+If you are using [octopress-multilingual](https://github.com/octopress/multilingual), additional feeds will automatically be added for
+each language. Your feed urls will be organized by language. For example:
 
 ```
 /en/feed/index.xml       # All English posts feed
-/en/links/index.xml      # English link posts (if using octopress-linkblog)
-/en/articles/index.xml   # English article posts (if using octopress-linkblog)
+/de/feed/index.xml       # All German posts feed
+
+# Feeds added with octopress-linkblog
+/en/feed/articles/index.xml    # English articles only feed
+/en/feed/links/index.xml       # English link-posts only feed
+/de/feed/articles/index.xml    # German articles only feed
+/de/feed/links/index.xml       # German link-posts only feed
 ```
 
 To change the URL for these pages, read the [Feed Permalinks](#feed-permalinks) section below.
-
-Adding a secondary language feed is pretty simple. Let's say you want to add a German language feed. Here's what you'd do.
-
-First, create a page at `/de/feed/index.xml` (or whatever path suits your site's URL conventions) and add the following.
-
-```
----
-feed: true
-title: Deutsch feed
-lang: de
----
-{% include feeds:main-feed.xml %}
-```
-
-The page config, `feed: true` ensures that it will be added to your site's feed listing with `{% feed_tag %}`. The title, as you'd
-expect will show up as your feed title in RSS readers.
-
-If you are using the [octopress-linkblog](https://github.com/octopress/linkblog) plugin, you can also add article-only and link-only feeds for additional languages.
-
-To create an articles feed, add a file to `/de/feed/articles/index.xml` (or wherever suits your site) containing the following:
-
-```
----
-feed:true
-title: Deutsch Artikel Feed
-lang: de
----
-{% include feeds:article-feed.xml %}
-```
-
-To add a link-posts feed, add a file to `/de/feed/links/index.xml` containing the following:
-
-```
----
-feed:true
-title: Deutsch Link Feed
-lang: de
----
-{% include feeds:article-feed.xml %}
-```
-
-That's it. When you generate your site. These feeds should contain only German posts. If you have more than one language, you can just repeat the steps above for each.
 
 ## Customize feeds
 
@@ -138,19 +103,28 @@ https://github.com/octopress/feeds
   - main-feed.xml
 
 pages:                              urls:
-  - article-feed.xml                   /feed/articles/index.xml
-  - link-feed.xml                      /feed/links/index.xml
-  - main-feed.xml                      /feed/index.xml
+  - main                             /feed/
+  - links                            /feed/links/       # with octopress-linkblog
+  - articles                         /feed/articles/    # with octopress-linkblog
 
  default configuration:
     count: 20
     excerpts: false         # Feed excerpts post content
     external_links: true    # Linkposts should direct visitors to the linked site
-    articles_feed: false    # Add a feed with articles only
-    linkposts_feed: false   # Add a feed with linkposts only
 ```
 
-NOTE: Any relative URLs in your posts will be expanded based on your site's `url` configuration.
+If you have posts written in English and German, and are using [octopress-multilingual](https://github.com/octopress/multilingual),
+your permalinks will automatically be name-spaced by language, like this:
+
+```
+pages:                              urls:
+  - main                             /en/feed/
+  - links                            /en/feed/links/
+  - articles                         /en/feed/articles/
+  - main-de                          /de/feed/
+  - links-de                         /de/feed/links/
+  - articles-de                      /de/feed/articles/
+```
 
 Octopress Ink can copy all of the plugin's assets to `_plugins/feeds/*` where you can override them with your own modifications. This is
 only necessary if you want to modify this plugin's behavior.
@@ -190,21 +164,19 @@ You can set the URL for the feed pages by configuring the `permalink` setting. H
 
 ```yaml
 permalinks:
-  main-feed: /rss/
-  link-feed: /rss/links/
-  article-feed: /rss/articles/
+  main: /rss/
+  links: /rss/links/
+  articles: /rss/articles/
 ```
 
 Now when you run `$ octopress ink list feeds` the pages section will look like this:
 
 ```
 pages:                              urls:
-  - article-feed.xml                   /rss/articles/index.xml
-  - link-feed.xml                      /rss/links/index.xml
-  - main-feed.xml                      /rss/index.xml
+  - main                             /rss/
+  - links                            /rss/links/
+  - articles                         /rss/articles/
 ```
-
-Note: Multilingual feeds will not show up here. This only shows pages that come with this plugin.
 
 ### Excerpted feeds
 
