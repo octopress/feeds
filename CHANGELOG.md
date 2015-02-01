@@ -1,5 +1,9 @@
 # Changelog
 
+### 1.3.0 (2015-02-01)
+
+- Now all language feeds are automatically generated.
+
 ### 1.2.7 (2015-01-31)
 
 - Added support for new octopress-multilingual page.lang feature.
