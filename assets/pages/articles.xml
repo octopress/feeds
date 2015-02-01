@@ -1,7 +1,6 @@
 ---
 permalink: /feed/articles/
-title: Articles Feed
+title: Articles only
 feed: true
-lang: en
 ---
 {% include feeds:article-feed.xml %}

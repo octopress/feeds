@@ -4,7 +4,6 @@ module Octopress
       def render(context)
         context['site.pages'].dup \
           .select  { |p| p.data['feed'] } \
-          .sort_by { |p| p.path.size } \
           .map     { |p| tag(p) } \
           .join("\n")
       end
@@ -19,6 +18,10 @@ module Octopress
         title = page.site.config['name'].dup || ''
         title << ': ' unless title.empty?
         title << page.data['title']
+
+        if defined? Octopress::Multilingual
+          title << " (#{page.lang})"
+        end
 
         title
       end
