@@ -56,7 +56,7 @@ module Octopress
           # New name for permalink settings in plugin config.yml
           permalink_name = "#{page.permalink_name}-#{lang}"
 
-          # Set the permalink defaul to /en/feed/[type]
+          # Set the permalink defaul to /[lang]/feed/[type]
           permalink = File.join("/#{lang}", "feed", feed_type(page), '/')
 
           # Create a copy of the page

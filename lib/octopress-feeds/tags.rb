@@ -19,8 +19,8 @@ module Octopress
         title << ': ' unless title.empty?
         title << page.data['title']
 
-        if defined? Octopress::Multilingual
-          title << " (#{page.lang})"
+        if defined?(Octopress::Multilingual) && page.lang
+          title << " (#{Octopress::Multilingual.language_name(page.lang)})"
         end
 
         title

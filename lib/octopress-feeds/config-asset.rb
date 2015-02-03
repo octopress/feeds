@@ -10,12 +10,15 @@ module Octopress
       end
 
       def multilingual_permalinks
-        lang = Octopress.site.config['lang']
-        { "permalinks" => {
-          "main"    => "/#{lang}/feed/",
-          "links"    => "/#{lang}/feed/links/",
-          "articles" => "/#{lang}/feed/articles/"
-        }}
+        if lang = Octopress.site.config['lang']
+          { "permalinks" => {
+            "main"    => "/#{lang}/feed/",
+            "links"    => "/#{lang}/feed/links/",
+            "articles" => "/#{lang}/feed/articles/"
+          }}
+        else
+          {}
+        end
       end
     end
   end
