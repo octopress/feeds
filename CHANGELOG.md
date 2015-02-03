@@ -1,5 +1,9 @@
 # Changelog
 
+### 1.3.1 (2015-02-03)
+
+- Now feed titles include the full language name.
+
 ### 1.3.0 (2015-02-01)
 
 - Now all language feeds are automatically generated.
