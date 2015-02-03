@@ -30,7 +30,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "octopress-multilingual"
 
   if RUBY_VERSION >= "2"
-    spec.add_development_dependency "pry-byebug"
     spec.add_development_dependency "octopress-debugger"
   end
 end
