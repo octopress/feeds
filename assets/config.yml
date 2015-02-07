@@ -1,3 +1,8 @@
 count: 20
 excerpts: false         # Feed excerpts post content
 external_links: true    # Linkposts should direct visitors to the linked site
+
+titles:
+  main-feed: Posts Feed
+  article-feed: Articles-only Feed
+  link-feed: Links-only Feed

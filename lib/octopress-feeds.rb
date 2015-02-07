@@ -33,18 +33,24 @@ module Octopress
 
           # Add default language to main feeds
           @pages.each do |page| 
-            page.data.merge!({'lang' => Octopress.site.config['lang']}) 
+            lang = Octopress.site.config['lang']
+            page.data.merge!({'lang' => lang}) 
+            page.permalink ||= lang_permalink(page, lang)
           end
 
           # Ensure multilingual pages are set up for `ink list` view
           Octopress.site.read if Octopress.site.posts.empty?
 
           # Add pages for other languages
-          Octopress.site.languages.each do |lang|
-            next if lang == Octopress.site.config['lang']
+          Octopress::Multilingual.languages.each do |lang|
+            next if lang == Octopress::Multilingual.main_language
             @pages.concat add_lang_pages(lang)
           end
         end
+      end
+
+      def lang_permalink(page, lang)
+        File.join("/#{lang}", "feed", feed_url(page), '/')
       end
 
       def add_lang_pages(lang)
@@ -56,8 +62,8 @@ module Octopress
           # New name for permalink settings in plugin config.yml
           permalink_name = "#{page.permalink_name}-#{lang}"
 
-          # Set the permalink defaul to /[lang]/feed/[type]
-          permalink = File.join("/#{lang}", "feed", feed_type(page), '/')
+          # Set the permalink default to /[lang]/feed/[type]
+          permalink = File.join("/#{lang}", "feed", feed_url(page), '/')
 
           # Create a copy of the page
           lang_pages << page.clone(permalink_name, permalink, {'lang'=>lang})
@@ -66,13 +72,21 @@ module Octopress
         lang_pages.sort_by {|p| p.path.size }
       end
 
+      def feed_url(page)
+        case feed_type(page)
+        when 'article'; 'articles'
+        when 'link'; 'links'
+        else ''
+        end
+      end
+
       def feed_type(page)
-        url = if page.file =~ /article/
-          'articles'
+        if page.file =~ /article/
+          'article'
         elsif page.file =~ /link/
-          'links'
+          'link'
         else
-          ''
+          'main'
         end
       end
     end
