@@ -60,7 +60,7 @@ module Octopress
         #
         @pages.each do |page|
           # New name for permalink settings in plugin config.yml
-          permalink_name = "#{page.permalink_name}-#{lang}"
+          permalink_name = "#{page.permalink_name}_#{lang}"
 
           # Set the permalink default to /[lang]/feed/[type]
           permalink = File.join("/#{lang}", "feed", feed_url(page), '/')

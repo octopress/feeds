@@ -102,15 +102,19 @@ https://github.com/octopress/feeds
   - link-feed.xml
   - main-feed.xml
 
-pages:                              urls:
-  - main                             /feed/
-  - links                            /feed/links/       # with octopress-linkblog
-  - articles                         /feed/articles/    # with octopress-linkblog
+ pages:                             urls:
+  - main.xml                         /feed/
+  - links.xml                        /feed/links/       # with octopress-linkblog
+  - articles.xml                     /feed/articles/    # with octopress-linkblog
 
- default configuration:
-    count: 20
-    excerpts: false         # Feed excerpts post content
-    external_links: true    # Linkposts should direct visitors to the linked site
+ config:
+   count: 20
+   excerpts: false         # Feed excerpts post content
+   external_links: true    # Linkposts should direct visitors to the linked site
+   titles:
+     main-feed: "Posts Feed"
+     article-feed: "Articles-only Feed"
+     link-feed: "Links-only Feed"
 ```
 
 If you have posts written in English and German, and are using [octopress-multilingual](https://github.com/octopress/multilingual),
@@ -121,9 +125,9 @@ pages:                              urls:
   - main                             /en/feed/
   - links                            /en/feed/links/
   - articles                         /en/feed/articles/
-  - main-de                          /de/feed/
-  - links-de                         /de/feed/links/
-  - articles-de                      /de/feed/articles/
+  - main_de                          /de/feed/
+  - links_de                         /de/feed/links/
+  - articles_de                      /de/feed/articles/
 ```
 
 Octopress Ink can copy all of the plugin's assets to `_plugins/feeds/*` where you can override them with your own modifications. This is
@@ -155,8 +159,20 @@ This will create a configuration file populated with the defaults for this plugi
 | `external_linkposts`  | Link posts should direct visitors to the linked site.       | true        |
 | `articles_feed`       | Add an additional articles-only feed.                       | false       |
 | `linkposts_feed`      | Add an additional link-posts-only feed.                     | false       |
-| `permalinks`          | Set the permalink for feed pages.                           |             |
+| `titles`              | Set feed titles for main, article, and link feeds.          | [see below] |
+| `permalinks`          | Set the permalink for feed pages.                           | {}          |
 
+
+### Feed titles
+
+The `titles` configuration allows you to control the title that RSS subscribers see for your feed.
+
+```yaml
+titles:
+  main-feed: Posts Feed
+  article-feed: Articles-only Feed
+  link-feed: Links-only Feed
+```
 
 ### Feed permalinks
 
