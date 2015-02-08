@@ -174,6 +174,9 @@ titles:
   link-feed: Links-only Feed
 ```
 
+If you want to change the title for other languages you can add a new language localized config file. For example if you have German
+feeds, you would add a config file at `_plugins/feeds/config_de.yml` and set titles for your German language feeds.
+
 ### Feed permalinks
 
 You can set the URL for the feed pages by configuring the `permalink` setting. Here's an example:
