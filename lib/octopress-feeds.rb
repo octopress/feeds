@@ -66,7 +66,9 @@ module Octopress
           permalink = File.join("/#{lang}", "feed", feed_url(page), '/')
 
           # Create a copy of the page
-          lang_pages << page.clone(permalink_name, permalink, {'lang'=>lang})
+          lang_pages << begin
+            p = page.clone(permalink, permalink_name).merge_data({'lang'=>lang})
+          end
         end
 
         lang_pages.sort_by {|p| p.path.size }
