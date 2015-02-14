@@ -1,5 +1,9 @@
 # Changelog
 
+### 1.3.3 (2015-02-14)
+
+- Updated compatibility with latest Octopress Ink.
+
 ### 1.3.2 (2015-02-08)
 
 - New: Feed titles can be configured (for additional languages too).
