@@ -1,5 +1,10 @@
 # Changelog
 
+### 1.3.4 (2015-02-14)
+
+- Only default feed language if a default site language is set.
+- Removed abort-tag (no longer needed)
+
 ### 1.3.3 (2015-02-14)
 
 - Updated compatibility with latest Octopress Ink.
