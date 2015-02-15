@@ -18,7 +18,6 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
   
   spec.add_runtime_dependency "octopress-ink", ">= 1.0.0.rc"
-  spec.add_runtime_dependency "octopress-abort-tag"
   spec.add_runtime_dependency "octopress-return-tag"
   spec.add_runtime_dependency "octopress-date-format"
 

@@ -1,7 +1,6 @@
 require 'octopress-feeds/version'
 require 'octopress-ink'
 require 'octopress-include-tag'
-require 'octopress-abort-tag'
 require 'octopress-return-tag'
 require 'octopress-date-format'
 require 'octopress-feeds/tags'
@@ -29,7 +28,7 @@ module Octopress
 
         @pages.sort_by! {|p| p.path.size }
 
-        if defined? Octopress::Multilingual
+        if defined?(Octopress::Multilingual) && Octopress.site.config['lang']
 
           # Add default language to main feeds
           @pages.each do |page| 
