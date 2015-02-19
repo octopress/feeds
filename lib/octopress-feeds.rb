@@ -4,88 +4,86 @@ require 'octopress-include-tag'
 require 'octopress-return-tag'
 require 'octopress-date-format'
 require 'octopress-feeds/tags'
-require 'octopress-feeds/config-asset'
 
 
 module Octopress
   module Feeds
     class Plugin < Ink::Plugin
 
-      def config_defaults
-        @config ||= Feeds::Config.new(self, @config_file)
+      def multilingual?
+        (defined?(Octopress::Multilingual) && !Octopress.site.config['lang'].nil?)
       end
 
-      def add_pages
-        super
-
+      def add_template_pages
         # Remove linkblog pages if the octopress-linkblog plugin isn't installed
-
-        unless defined? Octopress::Linkblog
-          @pages.reject! do |p|
-            p.file =~ /(article|link)/
-          end
-        end
-
-        @pages.sort_by! {|p| p.path.size }
-
-        if defined?(Octopress::Multilingual) && Octopress.site.config['lang']
-
-          # Add default language to main feeds
-          @pages.each do |page| 
-            lang = Octopress.site.config['lang']
-            page.data.merge!({'lang' => lang}) 
-            page.permalink ||= lang_permalink(page, lang)
-          end
-
-          # Ensure multilingual pages are set up for `ink list` view
-          Octopress.site.read if Octopress.site.posts.empty?
-
+        if multilingual?
           # Add pages for other languages
           Octopress::Multilingual.languages.each do |lang|
-            next if lang == Octopress::Multilingual.main_language
-            @pages.concat add_lang_pages(lang)
+            add_feeds(lang)
           end
+        else
+          add_feeds
         end
       end
 
-      def lang_permalink(page, lang)
-        File.join("/#{lang}", "feed", feed_url(page), '/')
-      end
+      def add_feeds(lang=nil)
 
-      def add_lang_pages(lang)
-        lang_pages = []
+        lang = nil unless multilingual?
 
-        # For each page template, create a new page, and configure its permalink defaults
-        #
-        @pages.each do |page|
-          # New name for permalink settings in plugin config.yml
-          permalink_name = "#{page.permalink_name}_#{lang}"
+        config = self.config(lang)
+        files = ['main.xml']
 
-          # Set the permalink default to /[lang]/feed/[type]
-          permalink = File.join("/#{lang}", "feed", feed_url(page), '/')
-
-          # Create a copy of the page
-          lang_pages << begin
-            p = page.clone(permalink, permalink_name).merge_data({'lang'=>lang})
-          end
+        if defined? Octopress::Linkblog
+          files.concat %w{links.xml articles.xml}
         end
 
-        lang_pages.sort_by {|p| p.path.size }
-      end
+        files.each do |file|
+          add_template_page(file, permalink(file, lang), {
+            'lang' => lang,
+            'feed_type' => feed_type(file)
+          })
+        end
 
-      def feed_url(page)
-        case feed_type(page)
-        when 'article'; 'articles'
-        when 'link'; 'links'
-        else ''
+        if config['category_feed']
+          add_category_feeds(config, lang)
         end
       end
 
-      def feed_type(page)
-        if page.file =~ /article/
-          'article'
-        elsif page.file =~ /link/
-          'link'
+      def add_category_feeds(config, lang)
+        if lang
+          categories = Octopres::Multilingual.categories_by_language(lang)
+        else
+          categories = Octopress.site.categories
+        end
+
+        (config['categories'] || categories.keys).each do |category|
+          permalink = File.join(lang || '', category)
+          add_template_page(file, permalink, {
+            'lang' => lang,
+            'category' => category,
+            'feed_type' => 'categorty'
+          })
+        end
+      end
+
+      def permalink(template, lang)
+        type = feed_type(template)
+        url = File.join(lang || '', config(lang)['permalinks'][type])
+
+        # Allow permalinks to specify a filename (ugh, if you must…)
+        unless File.extname(url) == '.xml'
+          url = File.join(url, 'index.xml')
+        end
+
+        url
+      end
+
+      # Discern feed type based on filename
+      def feed_type(template)
+        if template =~ /article/
+          'articles'
+        elsif template =~ /link/
+          'links'
         else
           'main'
         end

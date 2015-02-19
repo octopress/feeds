@@ -1,0 +1,4 @@
+---
+feed: true
+---
+{% include feeds:category-feed.xml %}

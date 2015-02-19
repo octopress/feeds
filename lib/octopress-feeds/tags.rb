@@ -2,8 +2,10 @@ module Octopress
   module Feeds
     class FeedTag < Liquid::Tag
       def render(context)
-        Octopress::Ink.plugin('feeds').pages.dup
-          .map { |p| tag(p.page) }
+        Octopress::Ink.plugin('feeds').templates
+          .sort_by { |template| template.file.size }
+          .map { |template| template.pages }
+          .flatten.map {|page| tag(page) }
           .join("\n")
       end
 
@@ -26,26 +28,27 @@ module Octopress
       end
 
       def page_title_config(page)
-        plugin = page.plugin
-        config = plugin.config(page.lang)
+        plugin = Octopress::Ink.plugin('feeds')
+        config = plugin.config(page.lang)['titles']
 
-        case plugin.feed_type(page.asset)
-        when 'article'; config['titles']['article-feed']
-        when 'link'; config['titles']['link-feed']
-        else config['titles']['main-feed']
+        case page.data['feed_type']
+        when 'articles'; config['article-feed']
+        when 'links'; config['link-feed']
+        when 'category'; config['category-feed'].sub(/@category_name/, page.data['category'])
+        else config['main-feed']
         end
       end
     end
 
     class FeedUpdatedTag < Liquid::Tag
       def render(context)
-        feed = context['feed_type'] || 'posts'
+        feed = context['page.feed_type']
         site = context['site']
 
         case feed
         when 'articles'
           posts = site['articles']
-        when 'linkposts'
+        when 'links'
           posts = site['linkposts']
         else
           posts = site['posts']

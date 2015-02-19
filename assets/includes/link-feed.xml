@@ -1,4 +1,4 @@
-{% assign feed_type = 'linkposts' %}{% include feeds:head.xml %}
+{% include feeds:head.xml %}
 {% for post in site.linkposts limit:plugins.feeds.count %}
   <entry>
     {% include feeds:entry.xml %}

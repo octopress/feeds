@@ -1,5 +1,4 @@
 ---
-permalink: /feed/
 feed: true
 ---
 {% include feeds:main-feed.xml %}
