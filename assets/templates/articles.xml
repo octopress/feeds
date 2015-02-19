@@ -1,4 +1,9 @@
 ---
-feed: true
 ---
-{% include feeds:article-feed.xml %}
+{% include feeds:head.xml %}
+{% for post in site.articles limit:plugins.feeds.count %}
+  <entry>
+    {% include feeds:entry.xml %}
+  </entry>
+{% endfor %}
+</feed>

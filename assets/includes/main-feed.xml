@@ -1,7 +1,0 @@
-{% include feeds:head.xml %}
-{% for post in site.posts limit:plugins.feeds.count %}
-  <entry>
-    {% include feeds:entry.xml %}
-  </entry>
-{% endfor %}
-</feed>
