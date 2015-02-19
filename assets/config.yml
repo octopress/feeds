@@ -6,6 +6,7 @@ permalinks:
   main: /feed/
   links: /feed/links/
   articles: /feed/articles/
+  category: /feed/categories/@category_name/
 
 category_feed: false
 categories: []

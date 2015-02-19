@@ -50,15 +50,21 @@ module Octopress
       end
 
       def add_category_feeds(config, lang)
-        if lang
-          categories = Octopres::Multilingual.categories_by_language(lang)
-        else
-          categories = Octopress.site.categories
+        categories = Array(config['categories'])
+
+        if categories.empty?
+          if lang
+            categories = Octopres::Multilingual.categories_by_language(lang).keys
+          else
+            categories = Octopress.site.categories.keys
+          end
         end
 
-        (config['categories'] || categories.keys).each do |category|
-          permalink = File.join(lang || '', category)
-          add_template_page(file, permalink, {
+
+        categories.each do |category|
+          dir = config['permalinks']['category'].sub('@category_name', category)
+          permalink = File.join(lang || '', dir, 'index.xml')
+          add_template_page('category.xml', permalink, {
             'lang' => lang,
             'category' => category,
             'feed_type' => 'categorty'
