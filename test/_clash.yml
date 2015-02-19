@@ -2,24 +2,50 @@
   title: Standard build
   dir: standard
   build: true
-  compare: _expected _site
+  compare: 
+    - _expected/feed _site/feed
+    - _expected/feed_tag.html _site/feed_tag.html
 -
   title: Excerpted content
   dir: excerpts
   build: true
-  compare: _expected _site
+  compare: 
+    - _expected/feed _site/feed
+    - _expected/feed_tag.html _site/feed_tag.html
 -
   title: Link blogging
   dir: linkblog
   build: true
-  compare: _expected _site
+  compare: 
+    - _expected/feed _site/feed
+    - _expected/feed_tag.html _site/feed_tag.html
+-
+  title: Category feeds
+  dir: category-feed
+  build: true
+  compare: 
+    - _expected/feed _site/feed
+    - _expected/feed_tag.html _site/feed_tag.html
+-
+  title: Category feeds - limited by config
+  dir: category-feed-limited
+  build: true
+  compare: 
+    - _expected/feed _site/feed
+    - _expected/feed_tag.html _site/feed_tag.html
 -
   title: Multilingual site
   dir: multilingual
   build: true
-  compare: _expected _site
+  compare:
+    - _expected/en/feed _site/en/feed
+    - _expected/de/feed _site/de/feed
+    - _expected/feed_tag.html _site/feed_tag.html
 -
   title: Multilingual site with excerpts
   dir: multilingual-excerpts-linkblog
   build: true
-  compare: _expected _site
+  compare:
+    - _expected/en/feed _site/en/feed
+    - _expected/de/feed _site/de/feed
+    - _expected/feed_tag.html _site/feed_tag.html
