@@ -62,7 +62,7 @@ module Octopress
 
         categories.each do |category|
           category = category.downcase
-          dir = config['permalinks']['category'].sub('@category_name', category)
+          dir = config['permalinks']['category'].sub('category.name', category)
           permalink = File.join(lang || '', dir, 'index.xml')
           add_template_page('category.xml', permalink, {
             'lang' => lang,

@@ -1,5 +1,5 @@
-count: 20
-excerpts: false         # Feed excerpts post content
+count: 20               # Maximum number of posts in a feed
+excerpts: false         # Use post excerpts in feeds
 external_links: true    # Linkposts should direct visitors to the linked site
 category_feeds: false   # Add a feed for categories
 categories: []          # Only add feeds for these categories. (empty adds feeds for all categories)
@@ -11,7 +11,7 @@ titles:
   category:  site.name - Posts in category.name
 
 permalinks: 
-  main: /feed/
-  links: /feed/links/
+  main:     /feed/
+  links:    /feed/links/
   articles: /feed/articles/
-  category: /feed/categories/@category_name/
+  category: /feed/categories/category.name/
