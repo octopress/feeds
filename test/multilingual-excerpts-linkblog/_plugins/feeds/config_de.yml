@@ -1,4 +1,4 @@
 titles:
-  main-feed: Posten
-  article-feed: Einzig Artikels
-  link-feed: Einzig Links
+  main:     site.name - Posten
+  articles: site.name - Einzig Artikels
+  links:    site.name - Einzig Links

@@ -7,3 +7,6 @@ markdown: redcarpet
 author: Bob McDiggity
 name: Some awesome Jekyll site
 timezone: America/Chicago
+
+category_labels:
+  awesome: Kittens
