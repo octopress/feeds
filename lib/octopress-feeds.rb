@@ -44,7 +44,7 @@ module Octopress
           })
         end
 
-        if config['category_feed']
+        if config['category_feeds']
           add_category_feeds(config, lang)
         end
       end
@@ -60,14 +60,14 @@ module Octopress
           end
         end
 
-
         categories.each do |category|
+          category = category.downcase
           dir = config['permalinks']['category'].sub('@category_name', category)
           permalink = File.join(lang || '', dir, 'index.xml')
           add_template_page('category.xml', permalink, {
             'lang' => lang,
             'category' => category,
-            'feed_type' => 'categorty'
+            'feed_type' => 'category'
           })
         end
       end
@@ -86,9 +86,9 @@ module Octopress
 
       # Discern feed type based on filename
       def feed_type(template)
-        if template =~ /article/
+        if template =~ /articles/
           'articles'
-        elsif template =~ /link/
+        elsif template =~ /links/
           'links'
         else
           'main'

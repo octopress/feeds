@@ -16,9 +16,7 @@ module Octopress
       end
 
       def page_title(page)
-        title = page.site.config['name'].dup || ''
-        title << ': ' unless title.empty?
-        title << page_title_config(page)
+        title = page_title_config(page)
 
         if defined?(Octopress::Multilingual) && page.lang
           title << " (#{Octopress::Multilingual.language_name(page.lang)})"
@@ -31,12 +29,21 @@ module Octopress
         plugin = Octopress::Ink.plugin('feeds')
         config = plugin.config(page.lang)['titles']
 
-        case page.data['feed_type']
-        when 'articles'; config['article-feed']
-        when 'links'; config['link-feed']
-        when 'category'; config['category-feed'].sub(/@category_name/, page.data['category'])
-        else config['main-feed']
+        site_name = page.site.config['name'] || ''
+        type = page.data['feed_type']
+        title = config[type]
+
+        if type == 'category'
+          category = page.data['category'].capitalize
+
+          if labels = Octopress.site.config['category_labels']
+            category = labels[category.downcase] || category
+          end
+
+          title = title.sub(/category\.name/, category)
         end
+
+        title.sub(/site\.name/, site_name)
       end
     end
 
@@ -45,13 +52,10 @@ module Octopress
         feed = context['page.feed_type']
         site = context['site']
 
-        case feed
-        when 'articles'
-          posts = site['articles']
-        when 'links'
-          posts = site['linkposts']
+        if feed == 'category'
+          posts = site['categories'][context['page.category']]
         else
-          posts = site['posts']
+          posts = site[feed] || site['posts']
         end
 
         if posts && !posts.empty?
