@@ -1,5 +1,9 @@
 # Changelog
 
+### 1.4.0 (2015-02-20)
+- New: Added category index feeds
+- New: Better configuration management for titles and permalinks
+
 ### 1.3.4 (2015-02-14)
 
 - Only default feed language if a default site language is set.
