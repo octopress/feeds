@@ -85,65 +85,9 @@ each language. Your feed urls will be organized by language. For example:
 
 To change the URL for these pages, read the [Feed Permalinks](#feed-permalinks) section below.
 
-## Customize feeds
-
-To list detailed information about this plugin, run `$ octopress ink list feeds`. This will output something like this:
-
-```
-Plugin: Octopress Feeds - v1.1.5
-Slug: feeds
-RSS feeds for Jekyll sites, featuring link-blogging and multilingual support.
-https://github.com/octopress/feeds
-=============================================================
- includes:
-  - article-feed.xml
-  - entry.xml
-  - head.xml
-  - link-feed.xml
-  - main-feed.xml
-
- pages:                             urls:
-  - main.xml                         /feed/
-  - links.xml                        /feed/links/       # with octopress-linkblog
-  - articles.xml                     /feed/articles/    # with octopress-linkblog
-
- config:
-   count: 20
-   excerpts: false         # Feed excerpts post content
-   external_links: true    # Linkposts should direct visitors to the linked site
-   titles:
-     main-feed: "Posts Feed"
-     article-feed: "Articles-only Feed"
-     link-feed: "Links-only Feed"
-```
-
-If you have posts written in English and German, and are using [octopress-multilingual](https://github.com/octopress/multilingual),
-your permalinks will automatically be name-spaced by language, like this:
-
-```
-pages:                              urls:
-  - main                             /en/feed/
-  - links                            /en/feed/links/
-  - articles                         /en/feed/articles/
-  - main_de                          /de/feed/
-  - links_de                         /de/feed/links/
-  - articles_de                      /de/feed/articles/
-```
-
-Octopress Ink can copy all of the plugin's assets to `_plugins/feeds/*` where you can override them with your own modifications. This is
-only necessary if you want to modify this plugin's behavior.
-
-```
-octopress ink copy feeds
-```
-
-This will copy the plugin's configuration, pages, and includes from the gem, to your local site. If, for example, you want to change the XML for an entry, you can simply edit the `_plugins/feeds/includes/entry.xml` file.
-
-If you want to revert to the defaults, simply delete any file you don't care to override from the `_plugins/feeds/` directory.
-
 ## Configuration
 
-To configure this plugin, first create a configuration file at `_plugins/feeds/config.yml`. If you like, you can have Octopress Ink add it for you.
+To configure this plugin, first copy the plugin's configuration file to `_plugins/feeds/config.yml` buy running:
 
 ```
 $ octopress ink copy feeds --config-file
@@ -151,51 +95,45 @@ $ octopress ink copy feeds --config-file
 
 This will create a configuration file populated with the defaults for this plugin. Deleting this file will restore the default configuration.
 
+### Configuration defaults
 
-| Option                | Description                                                 | Default     |
-|:----------------------|:------------------------------------------------------------|:------------|
-| `count`               | How many posts should appear in your feeds.                 | 20          |
-| `excerpts`            | Feed entries will contain excerpts of post content.         | false       |
-| `external_linkposts`  | Link posts should direct visitors to the linked site.       | true        |
-| `articles_feed`       | Add an additional articles-only feed.                       | false       |
-| `linkposts_feed`      | Add an additional link-posts-only feed.                     | false       |
-| `titles`              | Set feed titles for main, article, and link feeds.          | [see below] |
-| `permalinks`          | Set the permalink for feed pages.                           | {}          |
+```
+count: 20               # Maximum number of posts in a feed
+excerpts: false         # Use post excerpts in feeds
+external_links: true    # Linkposts should direct visitors to the linked site
+category_feeds: false   # Add a feed for post categories
+categories: []          # Only add feeds for these categories. (empty adds feeds for all categories)
 
+titles:
+  main:      site.name - Posts
+  links:     site.name - Links-only
+  articles:  site.name - Articles-only
+  category:  site.name - Posts in category.name
+
+permalinks: 
+  main:     /feed/
+  links:    /feed/links/
+  articles: /feed/articles/
+  category: /feed/categories/category.name/
+```
 
 ### Feed titles
 
 The `titles` configuration allows you to control the title that RSS subscribers see for your feed.
 
-```yaml
-titles:
-  main-feed: Posts Feed
-  article-feed: Articles-only Feed
-  link-feed: Links-only Feed
-```
+As you'd expect, `site.name` is replaced with the value from your site configuration and `category.name` is replaced with the
+category for that feed.
 
 If you want to change the title for other languages you can add a new language localized config file. For example if you have German
 feeds, you would add a config file at `_plugins/feeds/config_de.yml` and set titles for your German language feeds.
 
 ### Feed permalinks
 
-You can set the URL for the feed pages by configuring the `permalink` setting. Here's an example:
+You can set the URL for the feed pages by configuring the `permalinks` setting.
 
-```yaml
-permalinks:
-  main: /rss/
-  links: /rss/links/
-  articles: /rss/articles/
-```
-
-Now when you run `$ octopress ink list feeds` the pages section will look like this:
-
-```
-pages:                              urls:
-  - main                             /rss/
-  - links                            /rss/links/
-  - articles                         /rss/articles/
-```
+If you are running a multilingual site with [octopress-multilingual](https://github.com/octopress/multilingual) permalinks will be
+prepended with the lanugage code that corresponds with the posts in that feed. So `/feeds/` will become `/en/feeds/` and `/de/feeds/`
+and so on.
 
 ### Excerpted feeds
 
@@ -203,6 +141,34 @@ Post excerpts are determined by Jekyll's `excerpt_separator` configuration. It d
 post at the first double line-break, `\n\n`. If you want more control over where the excerpt happens on your individual
 posts, You can change that to something like `<!--more-->` and place that comment wherever you like in your post to
 split the content there.
+
+
+### Customizing feed templates
+
+When you run `$ octopress ink list feeds` the includes and templates section might like this:
+
+```
+includes:
+  - entry.xml
+  - head.xml
+ 
+templates:
+ - articles.xml                  # template file
+    /feed/articles/index.xml     # page generated from template
+ - category.xml
+ - links.xml
+    /feed/links/index.xml
+ - main.xml
+    /feed/index.xml
+```
+
+To customize feed templates and inlcudes, Copy all of the plugin's assets to `_plugins/feeds/` by running this command:
+
+```
+octopress ink copy feeds --templates --includes
+```
+
+Any changes you make to these templates will override the templates in the plugin.  If you want to revert to the defaults, simply delete any file you don't care to override from the `_plugins/feeds/` directory.
 
 
 ## Contributing
