@@ -1,6 +1,9 @@
 # Octopress Feeds
 
-RSS feeds for Jekyll sites, featuring link-blogging and multilingual support.
+RSS feeds for Jekyll sites, featuring:
+ - link-blogging - feeds for links and articles
+ - Feeds for categories and tags
+ - Multilingual support - automatic language specific feeds for all feed types
 
 [![Build Status](http://img.shields.io/travis/octopress/feeds.svg)](https://travis-ci.org/octopress/feeds)
 [![Gem Version](http://img.shields.io/gem/v/octopress-feeds.svg)](https://rubygems.org/gems/octopress-feeds)
