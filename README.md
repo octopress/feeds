@@ -51,7 +51,7 @@ Next, add a `<link>` tag to your site's `<head>`.
 
 ```html
 <head>
-{% feed_tag %}
+{% feeds %}
 </head>
 ```
 
