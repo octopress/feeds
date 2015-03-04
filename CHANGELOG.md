@@ -1,5 +1,11 @@
 # Changelog
 
+### 2.0.0 (2015-02-20)
+- New: Feeds for each post tag (or configure specific tags).
+- Now integrated with Octopress Ink's plugin bootstrap.
+- Some configurations have changed, see Readme for details.
+- Feeds are now plugin templates instead of pages (this only matters if you've been overriding them).
+
 ### 1.4.0 (2015-02-20)
 - New: Added category index feeds
 - New: Better configuration management for titles and permalinks
