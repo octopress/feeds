@@ -98,30 +98,34 @@ This will create a configuration file populated with the defaults for this plugi
 ### Configuration defaults
 
 ```
-count: 20               # Maximum number of posts in a feed
-excerpts: false         # Use post excerpts in feeds
-external_links: true    # Linkposts should direct visitors to the linked site
-category_feeds: false   # Add a feed for post categories
-categories: []          # Only add feeds for these categories. (empty adds feeds for all categories)
+feed_count: 20               # Maximum number of posts in a feed
+posts_link_out: true         # Linkposts should direct visitors to the linked site
+feed_excerpts: false         # Use post excerpts in feeds
+category_feeds: false        # Add a feed for post categories
+tag_feeds: false             # Add a feed for post tags
+categories: []               # Only add feeds for these categories. (empty adds feeds for all categories)
+tags: []                     # Only add feeds for these tags. (empty adds feeds for all tags)
 
 titles:
-  main:      site.name - Posts
-  links:     site.name - Links-only
-  articles:  site.name - Articles-only
-  category:  site.name - Posts in category.name
+  main_feed:      Posts - :site_name
+  links_feed:     Links - :site_name
+  articles_feed:  Articles - :site_name
+  category_feed:  Posts in :category - :site_name
+  tag_feed:       Posts tagged with :tag - :site_name
 
 permalinks: 
-  main:     /feed/
-  links:    /feed/links/
-  articles: /feed/articles/
-  category: /feed/categories/category.name/
+  main_feed:      /feed/
+  links_feed:     /feed/links/
+  articles_feed:  /feed/articles/
+  category_feed:  /feed/categories/:category/
+  tag_feed:       /feed/tags/:tag/
 ```
 
 ### Feed titles
 
 The `titles` configuration allows you to control the title that RSS subscribers see for your feed.
 
-As you'd expect, `site.name` is replaced with the value from your site configuration and `category.name` is replaced with the
+As you'd expect, `:site_name` is replaced with the value from your site configuration and `:category` is replaced with the
 category for that feed.
 
 If you want to change the title for other languages you can add a new language localized config file. For example if you have German
@@ -132,7 +136,7 @@ feeds, you would add a config file at `_plugins/feeds/config_de.yml` and set tit
 You can set the URL for the feed pages by configuring the `permalinks` setting.
 
 If you are running a multilingual site with [octopress-multilingual](https://github.com/octopress/multilingual) permalinks will be
-prepended with the lanugage code that corresponds with the posts in that feed. So `/feeds/` will become `/en/feeds/` and `/de/feeds/`
+prepended with the lanugage code that corresponds with the posts in that feed. So `/feed/` will become `/en/feed/` and `/de/feed/`
 and so on.
 
 ### Excerpted feeds

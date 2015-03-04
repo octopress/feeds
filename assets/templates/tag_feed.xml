@@ -1,0 +1,9 @@
+---
+---
+{% include feeds:head.xml %}
+{% for post in site.tags[page.tag] limit:plugins.feeds.feed_count %}
+  <entry>
+    {% include feeds:entry.xml %}
+  </entry>
+{% endfor %}
+</feed>
