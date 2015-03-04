@@ -27,6 +27,13 @@
     - _expected/feed _site/feed
     - _expected/feed_tag.html _site/feed_tag.html
 -
+  title: Tag feeds
+  dir: tag-feed
+  build: true
+  compare: 
+    - _expected/feed _site/feed
+    - _expected/feed_tag.html _site/feed_tag.html
+-
   title: Category feeds - limited by config
   dir: category-feed-limited
   build: true
