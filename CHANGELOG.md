@@ -1,5 +1,8 @@
 # Changelog
 
+### 2.0.2 (2015-03-04)
+- Fix: Liquid doesn't understand `||`, it prefers `or`.
+
 ### 2.0.1 (2015-03-04)
 - Fix: Feeds blew up if site author was not configured
 
