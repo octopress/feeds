@@ -1,6 +1,9 @@
 # Changelog
 
-### 2.0.0 (2015-02-20)
+### 2.0.1 (2015-03-04)
+- Fix: Feeds blew up if site author was not configured
+
+### 2.0.0 (2015-03-04)
 - New: Feeds for each post tag (or configure specific tags).
 - Now integrated with Octopress Ink's plugin bootstrap.
 - Some configurations have changed, see Readme for details.
