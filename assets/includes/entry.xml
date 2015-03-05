@@ -8,10 +8,10 @@
     <id>{{ post.id }}</id>
     <published>{{ post.date_xml }}</published>
     <updated>{% return post.date_updated_xml || post.date_xml %}</updated>
-    <author>
+    {% if post.author || site.author %}<author>
       <name>{% return post.author || site.author %}</name>
       <uri>{% if post.author_site %}{{ post.author_site }}{% else %}{{ site.url | join_url: site.baseurl }}{% endif %}</uri>
-    </author>
+    </author>{% endif %}
     <content type="html" xml:base="{{ site.url | join_url: site.baseurl }}" {% if page.lang %}xml:lang="{{ page.lang }}"{% endif %}>
 <![CDATA[
 {% if plugins.feeds.excerpts == false or post.linkpost %}

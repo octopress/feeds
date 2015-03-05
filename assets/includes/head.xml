@@ -7,4 +7,4 @@
   <updated>{% feed_updated %}</updated>
   <generator uri="http://octopress.org/">Octopress</generator>
   {% if page.lang %}<language>{{ page.lang }}</language>{% endif %}
-  <rights>Copyright © {{ site.time | date: '%Y' }}, {{ site.author | strip_html }}</rights>
+  <rights>Copyright © {{ site.time | date: '%Y' }}, {% return site.author || site.url | strip_html %}</rights>
