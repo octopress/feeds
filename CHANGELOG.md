@@ -1,7 +1,7 @@
 # Changelog
 
 ### 2.0.3 (2015-03-14)
-- New: Configure permalink and "read on" link labels.
+- New: Configure permalink and "read more" link labels.
 - Fix: Feed excerpt settings are now set properly.
 
 ### 2.0.2 (2015-03-04)

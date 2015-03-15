@@ -23,7 +23,7 @@
 {{ post.excerpt | full_urls }}
 
 {% if post.excerpt != post.content %}
-<p><a href="{{ post.url | canonical_url }}">{{ plugins.feeds.read_on_label }}</a></p>
+<p><a href="{{ post.url | canonical_url }}">{{ plugins.feeds.read_more_label }}</a></p>
 {% endif %}
 {% endif %}
 ]]>
