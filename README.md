@@ -109,6 +109,9 @@ tag_feeds: false             # Add a feed for post tags
 categories: []               # Only add feeds for these categories. (empty adds feeds for all categories)
 tags: []                     # Only add feeds for these tags. (empty adds feeds for all tags)
 
+read_on_label:    "Continue reading →"
+permalink_label:  "Permalink"
+
 titles:
   main_feed:      Posts - :site_name
   links_feed:     Links - :site_name

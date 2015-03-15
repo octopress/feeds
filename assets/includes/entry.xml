@@ -14,16 +14,16 @@
     </author>{% endif %}
     <content type="html" xml:base="{{ site.url | join_url: site.baseurl }}" {% if page.lang %}xml:lang="{{ page.lang }}"{% endif %}>
 <![CDATA[
-{% if plugins.feeds.excerpts == false or post.linkpost %}
+{% if plugins.feeds.feed_excerpts == false or post.linkpost %}
 {{ post.content | full_urls }}
 {% if post.linkpost %}
-<p><a href="{{ post.url | canonical_url }}">&infin; Permalink</a></p>
+<p><a href="{{ post.url | canonical_url }}">{{ plugins.feeds.permalink_label }}</a></p>
 {% endif %}
 {% else %}
 {{ post.excerpt | full_urls }}
 
 {% if post.excerpt != post.content %}
-<p><a href="{{ post.url | canonical_url }}">Continue reading &rarr;</a></p>
+<p><a href="{{ post.url | canonical_url }}">{{ plugins.feeds.read_on_label }}</a></p>
 {% endif %}
 {% endif %}
 ]]>
