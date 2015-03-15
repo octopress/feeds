@@ -1,5 +1,9 @@
 # Changelog
 
+### 2.0.3 (2015-03-14)
+- New: Configure permalink and "read on" link labels.
+- Fix: Feed excerpt settings are now set properly.
+
 ### 2.0.2 (2015-03-04)
 - Fix: Liquid doesn't understand `||`, it prefers `or`.
 
