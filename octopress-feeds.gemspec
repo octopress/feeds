@@ -9,7 +9,6 @@ Gem::Specification.new do |spec|
   spec.authors       = ["Brandon Mathis"]
   spec.email         = ["brandon@imathis.com"]
   spec.summary       = %q{A nice RSS feeds for Octopress and Jekyll sites.}
-  spec.description   = %q{A nice RSS feeds for Octopress and Jekyll sites.}
   spec.homepage      = "https://github.com/octopress/feeds"
   spec.license       = "MIT"
 
@@ -17,7 +16,7 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
   
-  spec.add_runtime_dependency "octopress-ink", ">= 1.0.0.rc"
+  spec.add_runtime_dependency "octopress-ink", "~> 1.0"
   spec.add_runtime_dependency "octopress-return-tag"
   spec.add_runtime_dependency "octopress-date-format"
 
