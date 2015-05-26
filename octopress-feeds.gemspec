@@ -18,6 +18,7 @@ Gem::Specification.new do |spec|
   
   spec.add_runtime_dependency "octopress-ink", "~> 1.0"
   spec.add_runtime_dependency "octopress-return-tag"
+  spec.add_runtime_dependency "octopress-include-tag"
   spec.add_runtime_dependency "octopress-date-format"
 
   spec.add_development_dependency "bundler", "~> 1.6"
