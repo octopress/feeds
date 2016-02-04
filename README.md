@@ -142,7 +142,7 @@ feeds, you would add a config file at `_plugins/feeds/config_de.yml` and set tit
 You can set the URL for the feed pages by configuring the `permalinks` setting.
 
 If you are running a multilingual site with [octopress-multilingual](https://github.com/octopress/multilingual) permalinks will be
-prepended with the lanugage code that corresponds with the posts in that feed. So `/feed/` will become `/en/feed/` and `/de/feed/`
+prepended with the language code that corresponds with the posts in that feed. So `/feed/` will become `/en/feed/` and `/de/feed/`
 and so on.
 
 ### Excerpted feeds
